@@ -1,0 +1,123 @@
+/* General body styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Container */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #faf3e0;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Logo Styling */
+.logo img {
+  height: 75px;
+}
+
+/* Navbar Styling */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: gold;
+  color: #243b55;
+}
+
+/* Actions Styling */
+.actions {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin-left: auto;
+  width:200px;
+}
+hr {
+  height: 2px;
+  background-color: #f39c12;
+  width: 100%;
+}
+
+.actions a {
+  margin-left: 10px; 
+  text-decoration: none;
+  color: white; /* Change text color to white for better contrast */
+  font-weight: bold;
+  padding: 12px 20px; /* Increased padding for better button appearance */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  height: 100%; /* Make buttons full height of the actions container */
+  display: flex; /* Center align text vertically */
+  align-items: center; /* Center align text vertically */
+  justify-content: center; /* Center align text horizontally */
+}
+
+/* Button Background Colors */
+.actions a.login {
+  background-color: red; /* Blue for Login */
+}
+
+.actions a.register {
+  background-color: #28a745; /* Green for Register */
+}
+
+.actions a.login:hover {
+  background-color: #0056b3;
+  color:black /* Darker blue on hover */
+}
+
+.actions a.register:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #243b55;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav li {
+    margin: 15px 0;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .actions {
+    display: none;
+  }
+}

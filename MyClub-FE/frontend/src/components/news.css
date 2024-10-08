@@ -1,0 +1,95 @@
+
+/* Headings */
+.ne-h1 {
+    color: black;
+    font-weight: bolder;
+    font-size: 48px;
+    width: 70%;
+    margin: 40px auto;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.ne-h2 {
+    color: black;
+    font-style: italic;
+    font-size: 28px;
+    width: 70%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Image */
+.ne-img {
+    display: block;
+    margin: 20px auto;
+    width: 60%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph */
+.ne-p {
+    color: black;
+    width: 70%;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Carousel Container */
+.con {
+    width: 50%;
+    margin: 40px auto;
+    overflow: hidden;
+    border: 5px solid #000;
+    border-radius: 8px;
+    box-shadow: 10px 25px 30px rgba(30, 30, 200, 0.3);
+}
+
+/* Carousel Wrapper */
+.wrapper  {
+    width: 100%;
+    display: flex;
+    animation: slide 16s infinite;
+}
+
+.wrapImage {
+    background-repeat: no-repeat;
+
+}
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(0);
+    }
+    30% {
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55% {
+        transform: translateX(-200%);
+    }
+    75% {
+        transform: translateX(-200%);
+    }
+    80% {
+        transform: translateX(-300%);
+    }
+    100% {
+        transform: translateX(-300%);
+    }
+}
+
+/* Carousel Images */
+.wrapper img {
+    width: 100%;
+    object-fit: cover;
+}

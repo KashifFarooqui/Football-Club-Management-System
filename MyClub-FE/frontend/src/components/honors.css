@@ -1,0 +1,42 @@
+
+  
+  .honors-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+    gap: 20px; /* Space between grid items */
+  }
+  
+  .honor-card {
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid  #f39c12; /* Border for the cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px;
+    text-align: center; /* Center text in the cards */
+    transition: transform 0.2s; /* Smooth hover effect */
+  }
+  
+  .honor-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  .honor-card img {
+    width:150px;; /* Ensure images fit within the card */
+    height: 200px; /* Maintain aspect ratio */
+  }
+  
+  .honor-info {
+    margin-top: 10px; /* Space between image and text */
+  }
+  
+  .honor-info h2 {
+    font-size: 1.2rem; /* Title size */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .honor-info p {
+    font-size: 0.9rem; /* Adjust font size for years */
+    color: #666; /* Slightly darker color for text */
+  }
+
+  
+  

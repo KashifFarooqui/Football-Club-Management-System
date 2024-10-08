@@ -1,0 +1,59 @@
+.main-con {
+    text-align: center; /* Center-align the contents of the main-con div */
+}
+
+.main-con img {
+    width: 1500px; /* Set a smaller width for the image */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Make the image a block element for centering */
+}
+
+
+.content h1 {
+    position: relative;
+    bottom: 250px;
+    margin-left: 25%;
+    font-size: 40PX;
+    color: gold;
+    font-weight: bold;
+    z-index: 4;
+    text-shadow: 4px 4px 4px black;
+    text-align: center;
+    display: flex;
+    
+}
+
+.content h2 {
+    color: black;
+    margin-left: 25%;
+    position: relative;
+    bottom: 75px;
+    font-size: 33px;
+    text-align: center;
+    display: flex;
+    margin: auto;
+}
+
+.content p{
+    color:black;
+    margin-left: 35%;
+    font-size: 20px;
+    width: 50%;
+    margin-bottom: 125px;
+    display: flex;
+    margin: auto;
+    
+}
+
+.content img {
+    width: 50%;
+    height: 100%;
+    padding-left: 50vh;
+}
+
+.content .sec-con {
+    position: relative;
+    font-size: 20px;
+    top: 20px;
+}

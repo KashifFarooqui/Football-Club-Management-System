@@ -1,0 +1,41 @@
+.history-conatiner{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+  
+}
+
+
+.history-conatiner h3{
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.history-conatiner p{
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+.image-conatiner{
+    text-align: center;
+}
+.image-conatiner img{
+    display: inline-block;
+    border-style:groove;
+    width: 500;
+    height:500px
+}
+.image-conatiner p{
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,134 @@
+
+.filters {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.filter-button {
+    background-color: #eee;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px; /* Changed margin to only apply between buttons */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.filter-button.active {
+    background-color: burlywood;
+    color: black;
+}
+
+.filter-button:hover {
+    background-color:  burlywood;
+}
+
+.ticket-card {
+    background-color: #fff;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(30, 30, 200, 0.3);
+    margin: 100px auto; /* Keeps the margin to center the ticket card */
+    padding: 35px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.team-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.team-logos img {
+    width: 60px;
+    height: 60px;
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.vs {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ticket-details {
+    text-align: left;
+}
+
+.event-details p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.event-details h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.event-details h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.date-time,
+.location,
+.price,
+.capacity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date-time i,
+.location i,
+.price i,
+.capacity i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+.button-container {
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Make the container full height (if needed) */
+}
+
+.buy-tickets-button {
+    background-color: burlywood;
+    border: none;
+    color: black;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%; /* Make the button fill the width of the container */
+    text-align: center; /* Center text within the button */
+}
+
+
+
+.buy-tickets-button:hover
+{
+    background-color: burlywood; 
+}
+
+.no-tickets{
+    color:black;
+    display: flex;
+    margin: auto;
+    padding-left: 43%;
+     
+}

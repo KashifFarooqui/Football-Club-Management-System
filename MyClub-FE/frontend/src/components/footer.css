@@ -1,0 +1,62 @@
+/* Footer.css */
+
+.footer {
+    background-color: #faf3e0; /* Light background for the footer */
+    padding: 40px 0;
+    color: #faf3e0; /* Text color */
+  }
+  
+  .cont {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex; /* Flexbox to align items horizontally */
+    justify-content: space-between; /* Even space between columns */
+    flex-wrap: wrap; /* In case of small screens, allow wrapping */
+  }
+  
+  .col-md-3 {
+    flex: 1;
+    padding: 0 15px;
+    min-width: 200px; /* Ensures columns don't get too narrow on small screens */
+  }
+  
+  .col-md-3 h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #f39c12;
+  }
+  
+  .col-md-3 ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .col-md-3 ul li {
+    margin-bottom: 10px;
+  }
+  
+  .col-md-3 ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .col-md-3 ul li a:hover {
+    color: #007bff; /* Hover color for links */
+  }
+  
+  /* Add some responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .col-md-3 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  }
+  

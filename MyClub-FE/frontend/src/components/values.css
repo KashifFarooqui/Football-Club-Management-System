@@ -1,0 +1,76 @@
+
+
+.values-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styles */
+.value {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+/* Typography */
+p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Closing Statement */
+.closing {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.closing p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .closing p {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,48 @@
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.sponsor-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    width:250px;
+    height: 350px;
+}
+
+.sponsor-card img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.sponsor-card h2 {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #243b55;
+}
+
+.sponsor-card p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+
+.sponsor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+

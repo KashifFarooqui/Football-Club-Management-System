@@ -1,0 +1,107 @@
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color:black;
+    
+}
+
+.ticket-form {
+    background-color: #faf3e0;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-style: bold;
+    font-size: small;
+}
+
+
+.ticket-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.ticket-button:hover {
+    background-color: #0056b3;
+}
+
+
+.confirm-button {
+    background-color: #28a745;
+}
+
+.confirm-button:hover {
+    background-color: #218838;
+}
+
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+
+.ticket-message {
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+.ticket-details {
+    margin-top: 20px;
+}

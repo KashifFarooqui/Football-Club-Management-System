@@ -1,0 +1,104 @@
+/* Card Container for horizontal layout */
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #faf2e6;
+  border-radius: 10px;
+  color: black;
+}
+
+/* Styling for Individual Player Cards */
+.player-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 250px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.player-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.player-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #333;
+  transition: border 0.3s;
+}
+
+.player-card img:hover {
+  border-color: #f39c12;
+}
+
+/* Player Name Styling */
+.player-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 12px 0;
+  color: #2c3e50;
+  text-transform: uppercase;
+}
+
+/* Player Information Styling */
+.player-card p {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin: 8px 0;
+}
+
+.player-card p:nth-child(2) {
+  font-weight: bold;
+  color: #34495e;
+}
+
+/* Horizontal Line */
+hr {
+  border: 0;
+  height: 2px;
+  background-color: #f39c12;
+  margin: 30px 0;
+  width: 100%;
+}
+
+/* Section Titles */
+h1 {
+  text-align: center;
+  color: #e67e22;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Image Styling */
+.image {
+  border: 3px solid black;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.image:hover {
+  border-color: #f39c12;
+}
+
+/* Adjust Responsiveness */
+@media (max-width: 768px) {
+  .player-card {
+    width: 100%;
+    margin: 15px 0;
+  }
+}

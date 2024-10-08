@@ -1,0 +1,266 @@
+<!--import React from 'react';
+import 'swiper/swiper-bundle.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import './mens.css';
+
+
+const players = {
+    coach: [
+      {
+        name: "Carlo Ancelotti",
+        position: "Head Coach",
+        nationality: "Italian",
+        age:"65 Year Old",
+        image: "/images/ancelotti.jpg"
+      }
+    ],
+    goalkeepers: [
+      {
+        name: "Thibaut Courtois",
+        position: "Goalkeeper",
+        nationality: "Belgian",
+        age:"32 Year Old",
+        image: "/images/courtois.jpg"
+      },
+      {
+        name: "Andriy Lunin",
+        position: "Goalkeeper",
+        nationality: "Ukrainian",
+        age:"25 Year Old",
+        image: "/images/lunin.jpg"
+      }
+    ],
+    forward: [
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#9 Kylian Mbappé",
+        position: "Forward",
+        nationality: "French",
+        age:"26 Year Old",
+        image: "/images/kmbappe.webp"
+      },
+      {
+        name: "#11 Rodrygo Goes",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"23 Year Old",
+        image: "/images/rodrygo.webp"
+      },
+      {
+        name: "#16 Endrick de Sousa",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"18 Year Old",
+        image: "/images/endrick.webp"
+      },
+      {
+        name: "#21 Brahim Díaz",
+        position: "Forward",
+        nationality: "Malaga",
+        age:"25 Year Old",
+        image: "/images/brahim.webp"
+      },
+    ],
+    midfielder : [
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+      {
+        name: "#7 Vinicius Junior",
+        position: "Forward",
+        nationality: "Brasilia",
+        age:"24 Year Old",
+        image: "/images/vinijr.webp"
+      },
+    ]
+  };
+
+const Mens =()=> 
+     {
+    return (
+        <main>
+            <div className="shop-container">
+                <h1>Men's Team</h1>
+                <div className="navbar"></div>
+            </div>
+            <h1> Coaches</h1>
+            <div className='card-container'>
+                {players.coach.map((coach, index) => (
+            <div key={index} className="player-card">
+                <img className="image" src={coach.image} alt={coach.name} />
+                <h3>{coach.name}</h3>
+                <p>{coach.age}</p>
+                <p>{coach.position}</p>
+                <p>{coach.nationality}</p>
+            </div>
+            ))}
+            </div>
+            {/*Goalkeeper*/}
+            <h1>Goalkeepers</h1>
+            <hr />
+            <div className="card-container">
+                {players.goalkeepers.map((player, index) => (
+                <div key={index} className="player-card">
+                    <img className="image" src={player.image} alt={player.name} />
+                    <h3>{player.name}</h3>
+                    <p>{player.age}</p>
+                    <p>{player.position}</p>
+                    <p>{player.nationality}</p>
+                </div>
+            ))}
+            </div>
+
+             {/*Forward*/}
+             <h1>Forward</h1>        
+            <hr />
+            <div className="card-container">
+                {players.forward.map((player, index) => (
+                <div key={index} className="player-card">
+                    <img className="image" src={player.image} alt={player.name} />
+                    <h3>{player.name}</h3>
+                    <p>{player.age}</p>
+                    <p>{player.position}</p>
+                    <p>{player.nationality}</p>
+                </div>
+            ))}
+          
+            </div>
+
+            {/*MidFielder*/}
+            <h1>Mid-Fielder</h1>
+            
+            <hr />
+            <div className="card-container">
+                {players.midfielder.map((player, index) => (
+                <div key={index} className="player-card">
+                    <img className="image" src={player.image} alt={player.name} />
+                    <h3>{player.name}</h3>
+                    <p>{player.age}</p>
+                    <p>{player.position}</p>
+                    <p>{player.nationality}</p>
+                </div>
+            ))}
+            </div>
+        </main>
+    );
+};
+
+export default Mens;
+
+
+/* General Container Styling */
+.coach-container {
+    padding: 20px;
+    background-color:#fff;
+    color:black;
+    display: flex;
+    margin: auto;  
+    background-color: blanchedalmond;
+    align-content: center;
+  }
+  
+  /* Card Container for horizontal layout */
+  .card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    color: black;
+    background-color: blanchedalmond;
+    
+
+  }
+  
+  /* Styling for Individual Player Cards */
+  .player-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .player-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .player-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .player-card p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* Horizontal Line */
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+  }
+  
+  /* Section Titles */
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .image{
+    border:2px solid black;
+  }

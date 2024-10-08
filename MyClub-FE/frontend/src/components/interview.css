@@ -1,0 +1,47 @@
+
+.interview-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: black;
+}
+
+.interview-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.interview-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    width: calc(33.33% - 40px); /* Adjust width for 3 items in a row */
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.interview-card h2 {
+    font-size: 1.5rem;
+}
+
+.interview-card p {
+    font-size: 0.9rem;
+}
+
+.thumbnail-container {
+    margin-bottom: 10px; /* Space between thumbnail and video */
+}
+
+.interview-thumbnail {
+    width: 100%; /* Make it responsive */
+    max-width: 300px; /* Max width for large screens */
+    margin: 10px 0; /* Spacing around the thumbnail */
+    cursor: pointer; /* Show pointer on hover */
+}
+
+.interview-video {
+    width: 100%; /* Full width for video */
+    height: 315px; /* Fixed height for video */
+}

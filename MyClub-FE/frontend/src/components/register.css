@@ -1,0 +1,114 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #faf3e0;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: black; 
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white; 
+    color: black; 
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .register-button, .cancel-button {
+    background-color: red; 
+    color: white;
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cancel-button {
+    background-color: #28a745;
+    border: 1px solid black;
+  }
+  
+  .register-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+    border: 1px solid #f39c12;
+  }
+  
+  .cancel-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px);
+    border: 1px solid #f39c12;
+  }
+  
+  .signup-message {
+    margin-top: 10px;
+  }
+  
+  .signup-message p {
+    color: black;
+  }
+  
+  .signup-message a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .signup-message a:hover {
+    text-decoration: underline;
+  }
+  
+  .register-type {
+    display: flex;               /* Use flexbox to align items in a row */
+    justify-content: center;     /* Center the items horizontally */
+    margin-bottom: 20px;
+    gap: 15px;  
+    font-size: small; 
+    font-style: bold;               /* Add spacing between the labels */
+  }
+  
+  .register-type label {
+    font-weight: bold;
+    color: #243b55;
+    display: flex;              /* Ensure label is a flex container */
+    align-items: center;        /* Align items vertically in the center */
+  }
+  
+  .register-type input {
+    margin-right: 5px;          /* Small space between the radio input and label */
+  }
+  
