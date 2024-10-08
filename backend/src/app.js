@@ -16,8 +16,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
-// router setup
-
 app.use('/api/users', userRoute)
 
 
