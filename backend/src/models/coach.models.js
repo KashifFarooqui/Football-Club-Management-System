@@ -1,26 +1,22 @@
 import mongoose from "mongoose";
 
 const coachSchema = new mongoose.Schema({
-    coachName:{
+    coachname:{
         type:String,
         required:true
     },
-    coachID:{
+    coachid:{
         type:String,
         required:true
     },
-    coachPawssword:{
+    password:{
         type:String,
         required:true
     },
-    coachSalary:{
+    email:{
         type:String,
         required:true
-    },
-    coachPosition:{
-        type:String,
-        required:true
-    },
+    }
 
 },{timestamps: true});
 

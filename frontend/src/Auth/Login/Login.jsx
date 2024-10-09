@@ -9,7 +9,7 @@ const Login = () => {
     email: '',
     password: ''
   });
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,12 +32,10 @@ const Login = () => {
     };
 
     console.log(userDetails);
-    
 
     try {
-      setLoading(true)
-      const response = await axios.post('http://localhost:8000/api/users/login',
-        userDetails);
+      setLoading(true);
+      const response = await axios.post('http://localhost:8000/api/users/login', userDetails);
 
       if (response.data.success) {
         alert("User Logged in successfully");
@@ -45,10 +43,15 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Error Logging user:', error.response?.data?.message || error.message);
-      alert('Error Logginig user. Please try again.');
+      alert('Error Logging user. Please try again.');
     } finally {
-      setLoading(false)
-    } 
+      setLoading(false);
+    }
+  };
+
+  // New functionality for "Login as Coach"
+  const handleCoachLogin = () => {
+    navigate('/coachlogin');
   };
 
   return (
@@ -80,11 +83,9 @@ const Login = () => {
             />
           </div>
 
-         
-
           <div className="signup-message">
             <p>
-              Don't have an account ?<Link to="/login">create one...</Link>
+              Don't have an account? <Link to="/register">Create one...</Link>
             </p>
           </div>
 
@@ -107,6 +108,11 @@ const Login = () => {
             </button>
           </div>
         </form>
+
+        <div className="coach-login" onClick={handleCoachLogin}>
+          <a href="#">Login as Coach</a>
+        </div>
+
       </div>
     </div>
   );

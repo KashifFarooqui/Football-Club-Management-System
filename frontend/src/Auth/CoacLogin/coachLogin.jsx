@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "./register.css";
+import "./coachlogin.css";
+import { Loader2 } from "lucide-react";
 
-const Register = () => {
+const coachLogin = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
+    coachid: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,83 +21,80 @@ const Register = () => {
   };
 
   const handleCancel = () => {
-    navigate('/'); // Redirect to the home page
+    navigate('/'); 
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent default action
-
-
-
-    const userDetails = {
-      username: formData.username,
-      email: formData.email,
+    e.preventDefault(); 
+    const coachDetails = {
+      coachid: formData.coachid,
       password: formData.password,
     };
 
-    try {
-      const response = await axios.post('http://localhost:8000/api/users/register', userDetails);
+    console.log(coachDetails);
 
-      if (response.status === 201) {
-        alert("User registered successfully");
-        navigate('/login');
+    try {
+      setLoading(true);
+      const response = await axios.post('http://localhost:8000/api/coach/login', coachDetails);
+
+      if (response.data.success) {
+        alert("Coach Logged in successfully");
+        navigate('/Dashboard');
       }
     } catch (error) {
-      console.error('Error registering user:', error.response?.data?.message || error.message);
-      alert('Error registering user. Please try again.');
+      console.error('Error Logging user:', error.response?.data?.message || error.message);
+      alert('Error Logging coach. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Register</h2>
+        <h2>Coach Login</h2>
         <form className="register-form" onSubmit={handleRegister}>
           <div className="form-group">
-            <label htmlFor="username">Username:</label>
+            <label >Coach Id:</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="coachid"
+              name="coachid"
               required
-              placeholder="Enter Your Username"
+              placeholder="Enter Your Coachid"
               onChange={handleChange}
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              placeholder="Enter Your Email"
-              onChange={handleChange}
-            />
-          </div>
 
           <div className="form-group">
-            <label htmlFor="password">Create a Password:</label>
+            <label htmlFor="password">Enter Password:</label>
             <input
               type="password"
               id="password"
               name="password"
               required
-              placeholder="Create a Strong Password"
+              placeholder="Enter Your Password"
               onChange={handleChange}
             />
           </div>
 
           <div className="signup-message">
             <p>
-              Already a member? <Link to="/login">Sign In</Link>
+              New Coach? <Link to="/coachregister">Register</Link>
             </p>
           </div>
 
           <div className="form-actions">
             <button type="submit" className="register-button">
-              Register
+              {loading ? (
+                <span>
+                  <Loader2 className=" text-2xl flex item-center gap-1 animate-spin" /> "Please wait"
+                </span>
+              ) : (
+                "Login"
+              )}
             </button>
             <button
               type="button"
@@ -107,9 +105,12 @@ const Register = () => {
             </button>
           </div>
         </form>
+
+        
+
       </div>
     </div>
   );
 };
 
-export default Register;
+export default coachLogin;

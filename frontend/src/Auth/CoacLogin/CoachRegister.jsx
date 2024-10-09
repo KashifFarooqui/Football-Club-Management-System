@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import "./register.css";
 
-const Register = () => {
+
+const CoachRegister = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    coachname:'',
+    coachid: '',
     email: '',
     password: ''
   });
@@ -24,42 +25,52 @@ const Register = () => {
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent default action
+    e.preventDefault(); 
 
-
-
-    const userDetails = {
-      username: formData.username,
+    const coachDetails = {
+    coachname:formData.coachname,
+      coachid: formData.coachid,
       email: formData.email,
       password: formData.password,
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/users/register', userDetails);
+      const response = await axios.post('http://localhost:8000/api/coach/register', coachDetails);
 
       if (response.status === 201) {
-        alert("User registered successfully");
-        navigate('/login');
+        alert("Coach registered successfully");
+        navigate('/');
       }
     } catch (error) {
-      console.error('Error registering user:', error.response?.data?.message || error.message);
-      alert('Error registering user. Please try again.');
+      console.error('Error registering coach:', error.response?.data?.message || error.message);
+      alert('Error registering coach. Please try again.');
     }
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Register</h2>
+        <h2>Coach Register</h2>
         <form className="register-form" onSubmit={handleRegister}>
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
+        <div className="form-group">
+            <label htmlFor="coachname">Coachname:</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="coachname"
+              name="coachname"
               required
-              placeholder="Enter Your Username"
+              placeholder="Enter Your Name:"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="coachid">CoachID:</label>
+            <input
+              type="text"
+              id="coachid"
+              name="coachid"
+              required
+              placeholder="Enter Your CoachID:"
               onChange={handleChange}
             />
           </div>
@@ -90,7 +101,7 @@ const Register = () => {
 
           <div className="signup-message">
             <p>
-              Already a member? <Link to="/login">Sign In</Link>
+              Already registered? <Link to="/coachlogin">Log In</Link>
             </p>
           </div>
 
@@ -112,4 +123,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CoachRegister;

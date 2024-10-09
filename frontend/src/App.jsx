@@ -17,6 +17,8 @@ import Honors from "./components/Honors";
 import Login from "./Auth/Login/Login";
 import Register from "./Auth/Signup/Register";
 import Ticket from "./components/Ticket";
+import CoachLogin from "./Auth/CoacLogin/coachLogin";
+import CoachRegister from "./Auth/CoacLogin/CoachRegister";
 // import Dashboard from "./Dashboard/Dashboard";
 // import MyTickets from "./Dashboard/DashComponent/MyTickets";  // Corrected the typo
 // import Cart from "./Dashboard/DashComponent/Cart";
@@ -41,6 +43,8 @@ function App() {
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/honors" element={<Honors />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/coachlogin" element={<CoachLogin />} />
+          <Route path="/coachregister" element={<CoachRegister />} />
           <Route path="/register" element={<Register />} />
           <Route path="/ticket" element={<Ticket />} />
           {/* Nested routes for the dashboard */}
@@ -50,6 +54,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes> */}
+        </Routes>
         <Footer />
       </div>
     </Router>
