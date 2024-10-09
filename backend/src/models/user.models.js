@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    registerType: {
+        type: String,
+        required: true,
+        enum: ["coach", "player", "user"]
     }
 }, { timestamps: true });
 

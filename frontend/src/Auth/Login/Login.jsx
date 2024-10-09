@@ -3,64 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './login.css';
 
 const Login = () => {
-  const [loginType, setLoginType] = useState('user');
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
-  });
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
-
-  const handleLoginTypeChange = (e) => {
-    setLoginType(e.target.value);
-  };
-
-  const handleCancel = () => {
-    const from = location.state?.from || '/';
-    navigate(from);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const userData = { email: formData.email, password: formData.password }; // Send email and password
-      if (loginType !== 'user') {
-        userData.username = formData.username; // Add username if not a regular user
-      }
-      
-      const response = await fetch('http://localhost:8000/api/v1/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-      });
-      
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("User Logged In Successfully");
-        alert(`User: ${formData.username} Logged In Successfully`);
-        navigate('/news'); // Redirect after successful login
-      } else {
-        console.log('Login failed:', data.message);
-        setErrorMessage(data.message); // Display error message
-      }
-    } catch (error) {
-      console.error('Logging failed:', error);
-      setErrorMessage(error.message); // Display error message
-    }
-  };
-
+  
   return (
     <div className="modal-overlay">
       <div className="modal-content">

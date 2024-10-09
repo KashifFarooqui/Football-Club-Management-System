@@ -1,66 +1,69 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './register.css';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import "./register.css";
+import axios from "axios";
 
 const Register = () => {
-  const [registerType, setRegisterType] = useState('user');
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [registerType, setRegisterType] = useState("user");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-        ...prevData,
-        [name]: value // Dynamically update the field
-    }));
+    if (name === "username") setUsername(value);
+    if (name === "password") setPassword(value);
+    if (name === "confirmPassword") setConfirmPassword(value);
+    if (name === "email") setEmail(value);
   };
 
   const handleRegisterTypeChange = (e) => {
     setRegisterType(e.target.value);
   };
 
-  const handleCancel = () => {
-    navigate('/'); // Redirect to the home page or wherever you need
-  };
-
   const handleRegister = async (e) => {
-    e.preventDefault(); // Correctly prevent default action
+    e.preventDefault();
 
-    const userDetails = {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword,
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    const registrationData = {
+      username,
+      email,
+      password,
+      registerType,
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/users/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Correct content type
-            },
-            body: JSON.stringify(userDetails)
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("User registered successfully");
-            console.log("User registered successfully");
-            navigate('/login');
-        } else {
-            console.log('Error registering user:', data.message);
+      setLoading(true);
+      setError(null);
+      const response = await axios.post(
+        "http://localhost:8000/api/users/register",
+        registrationData,
+        {
+          withCredentials: true,
         }
-        
-
+      );
+      if (response.data.success) {
+        console.log("Registering with data: ", registrationData);
+        navigate("/login");
+      }
     } catch (error) {
-        console.error('Network Error:', error);  
+      console.log(error);
+    } finally {
+      setLoading(false)
     }
+  };
+
+  const handleCancel = () => {
+    navigate("/");
   };
 
   return (
@@ -72,27 +75,25 @@ const Register = () => {
             <input
               type="radio"
               value="coach"
-              checked={registerType === 'coach'}
+              checked={registerType === "coach"}
               onChange={handleRegisterTypeChange}
             />
             Coach Register
           </label>
-
           <label>
             <input
               type="radio"
               value="user"
-              checked={registerType === 'user'}
+              checked={registerType === "user"}
               onChange={handleRegisterTypeChange}
             />
             User Register
           </label>
-
           <label>
             <input
               type="radio"
               value="player"
-              checked={registerType === 'player'}
+              checked={registerType === "player"}
               onChange={handleRegisterTypeChange}
             />
             Player Register
@@ -107,7 +108,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Coach ID'
+                placeholder="Enter Your Coach ID"
                 onChange={handleChange}
               />
             </div>
@@ -120,7 +121,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Player ID'
+                placeholder="Enter Your Player ID"
                 onChange={handleChange}
               />
             </div>
@@ -133,41 +134,41 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Username'
+                placeholder="Enter Your Username"
                 onChange={handleChange}
               />
             </div>
           )}
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
               name="email"
               required
-              placeholder='Enter Your Email'
+              placeholder="Enter Your Email"
               onChange={handleChange}
             />
           </div>
           <div className="form-group">
             <label htmlFor="password">Create a Password:</label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               required
-              placeholder='Create a Strong Password'
+              placeholder="Create a Strong Password"
               onChange={handleChange}
             />
           </div>
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <input
-              type="text" // Changed to password type
+              type="password"
               id="confirmPassword"
               name="confirmPassword"
               required
-              placeholder='Confirm Password'
+              placeholder="Confirm Password"
               onChange={handleChange}
             />
           </div>
@@ -177,8 +178,16 @@ const Register = () => {
             </p>
           </div>
           <div className="form-actions">
-            <button type="submit" className="register-button">Register</button>
-            <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="register-button">
+              Register
+            </button>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
