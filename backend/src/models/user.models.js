@@ -14,11 +14,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    registerType: {
-        type: String,
-        required: true,
-        enum: ["coach", "player", "user"]
-    }
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);

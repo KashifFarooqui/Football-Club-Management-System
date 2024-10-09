@@ -6,10 +6,7 @@ import cors from 'cors';
 
 const app = express()
 //cors
-app.use(cors({
-    origin:'*',
-    credentials: true
-}));
+app.use(cors());
 // set json parser middleware
 
 app.use(express.json())

@@ -4,12 +4,10 @@ import axios from "axios";
 import "./register.css";
 
 const Register = () => {
-  const [registerType, setRegisterType] = useState('user');
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
   const navigate = useNavigate();
 
@@ -17,20 +15,16 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value // Dynamically update the field
+      [name]: value 
     }));
   };
 
-  const handleRegisterTypeChange = (e) => {
-    setRegisterType(e.target.value);
-  };
-
   const handleCancel = () => {
-    navigate('/'); // Redirect to the home page or wherever you need
+    navigate('/'); // Redirect to the home page
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Correctly prevent default action
+    e.preventDefault(); // Prevent default action
 
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
@@ -60,80 +54,18 @@ const Register = () => {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Register</h2>
-        <div className="register-type">
-          <label>
-            <input
-              type="radio"
-              value="coach"
-              checked={registerType === 'coach'}
-              onChange={handleRegisterTypeChange}
-            />
-            Coach Register
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="user"
-              checked={registerType === 'user'}
-              onChange={handleRegisterTypeChange}
-            />
-            User Register
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="player"
-              checked={registerType === 'player'}
-              onChange={handleRegisterTypeChange}
-            />
-            Player Register
-          </label>
-        </div>
-
         <form className="register-form" onSubmit={handleRegister}>
-          {registerType === "coach" && (
-            <div className="form-group">
-              <label htmlFor="username">Coach ID:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                required
-                placeholder="Enter Your Coach ID"
-                onChange={handleChange}
-              />
-            </div>
-          )}
-
-          {registerType === "player" && (
-            <div className="form-group">
-              <label htmlFor="username">Player ID:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                required
-                placeholder="Enter Your Player ID"
-                onChange={handleChange}
-              />
-            </div>
-          )}
-
-          {registerType === "user" && (
-            <div className="form-group">
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                required
-                placeholder="Enter Your Username"
-                onChange={handleChange}
-              />
-            </div>
-          )}
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Enter Your Username"
+              onChange={handleChange}
+            />
+          </div>
 
           <div className="form-group">
             <label htmlFor="email">Email:</label>
@@ -155,18 +87,6 @@ const Register = () => {
               name="password"
               required
               placeholder="Create a Strong Password"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password:</label>
-            <input
-              type="password" // Changed to password type
-              id="confirmPassword"
-              name="confirmPassword"
-              required
-              placeholder="Confirm Password"
               onChange={handleChange}
             />
           </div>

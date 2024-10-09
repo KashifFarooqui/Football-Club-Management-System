@@ -4,18 +4,13 @@ import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
     try {
-        const { username, email, password, registerType,  } = req.body;
+        const { username, email, password} = req.body;
+        console.log(req.body);
+        
 
-        if (!username || !email || !password || !registerType) {
+        if (!username || !email || !password) {
             return res.status(400).json({
                 message: "Please fill all the fields",
-                success: false
-            });
-        }
-
-        if (password !== confirmPassword) {
-            return res.status(400).json({
-                message: "Passwords do not match",
                 success: false
             });
         }
@@ -33,8 +28,7 @@ const register = async (req, res) => {
         const newUser = await User.create({
             username,
             email,
-            password: hashedPassword,
-            registerType
+            password: hashedPassword
         });
 
         return res.status(201).json({

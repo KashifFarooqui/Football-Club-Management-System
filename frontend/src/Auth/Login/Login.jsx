@@ -1,116 +1,110 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './login.css';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import "./login.css";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
-  
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value 
+    }));
+  };
+
+  const handleCancel = () => {
+    navigate('/'); 
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault(); 
+    const userDetails = {
+      email: formData.email,
+      password: formData.password,
+    };
+
+    console.log(userDetails);
+    
+
+    try {
+      setLoading(true)
+      const response = await axios.post('http://localhost:8000/api/users/login',
+        userDetails);
+
+      if (response.data.success) {
+        alert("User Logged in successfully");
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      console.error('Error Logging user:', error.response?.data?.message || error.message);
+      alert('Error Logginig user. Please try again.');
+    } finally {
+      setLoading(false)
+    } 
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Login</h2>
-        {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
-        <div className="login-type">
-          <label>
-            <input
-              type="radio"
-              value="coach"
-              checked={loginType === 'coach'}
-              onChange={handleLoginTypeChange}
-            />
-            Coach Login
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="user"
-              checked={loginType === 'user'}
-              onChange={handleLoginTypeChange}
-            />
-            User Login
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="player"
-              checked={loginType === 'player'}
-              onChange={handleLoginTypeChange}
-            />
-            Player Login
-          </label>
-        </div>
-        <form className="login-form" onSubmit={handleLogin}>
-          {loginType === "coach" && (
-            <div className="form-group">
-              <label htmlFor="username">Coach ID:</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                required 
-                placeholder='Enter Your Coach ID' 
-                onChange={handleChange} 
-              />
-            </div>
-          )}
-          {loginType === "player" && (
-            <div className="form-group">
-              <label htmlFor="username">Player ID:</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                required 
-                placeholder='Enter Your Player ID' 
-                onChange={handleChange} 
-              />
-            </div>
-          )}
-          {loginType === "user" && (
-            <div className="form-group">
-              <label htmlFor="username">Username:</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                required 
-                placeholder='Enter Your Username' 
-                onChange={handleChange} 
-              />
-            </div>
-          )}
+        <form className="register-form" onSubmit={handleRegister}>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              required 
-              placeholder='Enter Your Email' 
-              onChange={handleChange} 
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Enter Your Email"
+              onChange={handleChange}
             />
           </div>
+
           <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input 
-              type="password" // Change to "password"
-              id="password" 
-              name="password" 
-              required 
-              placeholder='Enter Your Password' 
-              onChange={handleChange} 
+            <label htmlFor="password">Enter Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Enter Your Password"
+              onChange={handleChange}
             />
           </div>
+
+         
+
           <div className="signup-message">
             <p>
-              Didn’t have an account?
-              <Link to="/register"> Sign Up</Link>
+              Don't have an account ?<Link to="/login">create one...</Link>
             </p>
           </div>
+
           <div className="form-actions">
-            <button type="submit" className="login-button">Login</button>
-            <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="register-button">
+              {loading ? (
+                <span>
+                  <Loader2 className=" text-2xl flex item-center gap-1 animate-spin" /> "Please wait"
+                </span>
+              ) : (
+                "Login"
+              )}
+            </button>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

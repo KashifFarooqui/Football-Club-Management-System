@@ -17,6 +17,10 @@ import Honors from "./components/Honors";
 import Login from "./Auth/Login/Login";
 import Register from "./Auth/Signup/Register";
 import Ticket from "./components/Ticket";
+// import Dashboard from "./Dashboard/Dashboard";
+// import MyTickets from "./Dashboard/DashComponent/MyTickets";  // Corrected the typo
+// import Cart from "./Dashboard/DashComponent/Cart";
+// import Profile from './Dashboard/DashComponent/Profile';
 
 function App() {
   return (
@@ -39,7 +43,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/ticket" element={<Ticket />} />
-        </Routes>
+          {/* Nested routes for the dashboard */}
+          {/* <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="cart" element={<Cart />} />
+            <Route path="my-tickets" element={<MyTickets />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes> */}
         <Footer />
       </div>
     </Router>

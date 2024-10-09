@@ -94,8 +94,8 @@ const Ticket = ({ matchDetails, onClose }) => {
         </div>
 
         <div className="form-actions">
-          <button onClick={handleConfirm}>Confirm Ticket</button>
-          <button onClick={onClose}>Close</button>
+          <button className="Confirm" onClick={handleConfirm}>Confirm Ticket</button>
+          <button className="Confirm" onClick={onClose}>Close</button>
         </div>
       </div>
     </div>
