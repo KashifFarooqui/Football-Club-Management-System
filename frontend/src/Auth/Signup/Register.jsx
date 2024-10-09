@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./register.css";
 import axios from "axios";
+import "./register.css";
 
 const Register = () => {
   const [registerType, setRegisterType] = useState('user');
@@ -16,8 +16,8 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
-        ...prevData,
-        [name]: value // Dynamically update the field
+      ...prevData,
+      [name]: value // Dynamically update the field
     }));
   };
 
@@ -32,40 +32,28 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault(); // Correctly prevent default action
 
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
     const userDetails = {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword,
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/users/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Correct content type
-            },
-            body: JSON.stringify(userDetails)
-        });
+      const response = await axios.post('http://localhost:8000/api/users/register', userDetails);
 
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("User registered successfully");
-            console.log("User registered successfully");
-            navigate('/login');
-        } else {
-            console.log('Error registering user:', data.message);
-        }
-        
-
+      if (response.status === 201) {
+        alert("User registered successfully");
+        navigate('/login');
+      }
     } catch (error) {
-        console.error('Network Error:', error);  
+      console.error('Error registering user:', error.response?.data?.message || error.message);
+      alert('Error registering user. Please try again.');
     }
-  };
-
-  const handleCancel = () => {
-    navigate("/");
   };
 
   return (
@@ -103,6 +91,7 @@ const Register = () => {
             Player Register
           </label>
         </div>
+
         <form className="register-form" onSubmit={handleRegister}>
           {registerType === "coach" && (
             <div className="form-group">
@@ -112,11 +101,12 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Coach ID'
+                placeholder="Enter Your Coach ID"
                 onChange={handleChange}
               />
             </div>
           )}
+
           {registerType === "player" && (
             <div className="form-group">
               <label htmlFor="username">Player ID:</label>
@@ -125,11 +115,12 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Player ID'
+                placeholder="Enter Your Player ID"
                 onChange={handleChange}
               />
             </div>
           )}
+
           {registerType === "user" && (
             <div className="form-group">
               <label htmlFor="username">Username:</label>
@@ -138,11 +129,12 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder='Enter Your Username'
+                placeholder="Enter Your Username"
                 onChange={handleChange}
               />
             </div>
           )}
+
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
@@ -154,6 +146,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Create a Password:</label>
             <input
@@ -165,10 +158,11 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <input
-              type="text" // Changed to password type
+              type="password" // Changed to password type
               id="confirmPassword"
               name="confirmPassword"
               required
@@ -176,11 +170,13 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+
           <div className="signup-message">
             <p>
               Already a member? <Link to="/login">Sign In</Link>
             </p>
           </div>
+
           <div className="form-actions">
             <button type="submit" className="register-button">
               Register
