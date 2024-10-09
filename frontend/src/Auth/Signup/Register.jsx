@@ -4,61 +4,63 @@ import "./register.css";
 import axios from "axios";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [registerType, setRegisterType] = useState("user");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
+  const [registerType, setRegisterType] = useState('user');
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "username") setUsername(value);
-    if (name === "password") setPassword(value);
-    if (name === "confirmPassword") setConfirmPassword(value);
-    if (name === "email") setEmail(value);
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: value // Dynamically update the field
+    }));
   };
 
   const handleRegisterTypeChange = (e) => {
     setRegisterType(e.target.value);
   };
 
+  const handleCancel = () => {
+    navigate('/'); // Redirect to the home page or wherever you need
+  };
+
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Correctly prevent default action
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    const registrationData = {
-      username,
-      email,
-      password,
-      registerType,
+    const userDetails = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
     };
 
     try {
-      setLoading(true);
-      setError(null);
-      const response = await axios.post(
-        "http://localhost:8000/api/users/register",
-        registrationData,
-        {
-          withCredentials: true,
+        const response = await fetch('http://localhost:8000/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Correct content type
+            },
+            body: JSON.stringify(userDetails)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("User registered successfully");
+            console.log("User registered successfully");
+            navigate('/login');
+        } else {
+            console.log('Error registering user:', data.message);
         }
-      );
-      if (response.data.success) {
-        console.log("Registering with data: ", registrationData);
-        navigate("/login");
-      }
+        
+
     } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false)
+        console.error('Network Error:', error);  
     }
   };
 
@@ -75,25 +77,27 @@ const Register = () => {
             <input
               type="radio"
               value="coach"
-              checked={registerType === "coach"}
+              checked={registerType === 'coach'}
               onChange={handleRegisterTypeChange}
             />
             Coach Register
           </label>
+
           <label>
             <input
               type="radio"
               value="user"
-              checked={registerType === "user"}
+              checked={registerType === 'user'}
               onChange={handleRegisterTypeChange}
             />
             User Register
           </label>
+
           <label>
             <input
               type="radio"
               value="player"
-              checked={registerType === "player"}
+              checked={registerType === 'player'}
               onChange={handleRegisterTypeChange}
             />
             Player Register
@@ -108,7 +112,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder="Enter Your Coach ID"
+                placeholder='Enter Your Coach ID'
                 onChange={handleChange}
               />
             </div>
@@ -121,7 +125,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder="Enter Your Player ID"
+                placeholder='Enter Your Player ID'
                 onChange={handleChange}
               />
             </div>
@@ -134,7 +138,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 required
-                placeholder="Enter Your Username"
+                placeholder='Enter Your Username'
                 onChange={handleChange}
               />
             </div>
@@ -164,7 +168,7 @@ const Register = () => {
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <input
-              type="password"
+              type="text" // Changed to password type
               id="confirmPassword"
               name="confirmPassword"
               required
