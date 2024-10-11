@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Ticket from './Ticket'; 
+import Ticket from "../Ticket/Ticket";
 import './schedule.css';
 
 const matchesData = {
