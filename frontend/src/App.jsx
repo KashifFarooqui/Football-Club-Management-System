@@ -21,6 +21,13 @@ import CoachLogin from "./Auth/CoacLogin/coachLogin";
 import CoachRegister from "./Auth/CoacLogin/CoachRegister";
 import Dashboard from "./Dashboard/Dashboard";
 import CoachDashboard from "./Dashboard/CoachDashboard";
+import ManagePlayers from "./Dashboard/CoachDashComponent/ManagePlayers";
+import Profile from "./Dashboard/UserDashComponent/Profile"
+
+
+// const ProtectedRoute = ({ children, isLoggedIn}) => {
+//   return isLoggedIn ? children : <Navigate to ='/login'/>
+// }
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -54,7 +61,7 @@ function App() {
     <Router>
       <div className="App">
       <Header 
-          
+          isUserLoggedIn={isUserLoggedIn}
           isCoachLoggedIn={isCoachLoggedIn} 
           onUserLogout={handleUserLogout}
           onCoachLogout={handleCoachLogout} 
@@ -79,8 +86,16 @@ function App() {
           <Route path="/register" element= { <Register />} />
           <Route path="/ticket" element={<Ticket />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/coachdashboard" element={<CoachDashboard />} />
+          <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
+          <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" /> } />
+          <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to ="/coachlogin" /> } />
 
+          //protectedRoutes
+          {/* <Route path="/profile" element = {
+            <ProtectedRoute isLoggedIn={isUserLoggedIn}>
+            <Profile />
+            </ProtectedRoute>
+          } /> */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />

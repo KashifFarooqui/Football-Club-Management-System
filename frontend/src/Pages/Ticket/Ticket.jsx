@@ -20,7 +20,7 @@ const Ticket = ({ matchDetails, onClose }) => {
   };
 
   const handleConfirm = () => {
-    alert(`Tickets confirmed!\nDetails:\n- Type: ${ticketType}\n- Quantity: ${ticketCount}\n- Match: ${matchDetails.homeTeam} vs ${matchDetails.awayTeam}\n- Email: ${email}\n- Total: ₹${calculateTotal().toFixed(2)}`);
+    alert(`Tickets confirmed!\nDetails:\n- Type: ${ticketType}\n- Quantity: ${ticketCount}\n- Match: ${matchDetails.homeTeam} vs ${matchDetails.awayTeam}\n- Total: ₹${calculateTotal().toFixed(2)}`);
     onClose(); 
   };
 
@@ -77,7 +77,7 @@ const Ticket = ({ matchDetails, onClose }) => {
           </label>
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="email">Email Address:</label>
           <input
               type="email"
@@ -87,7 +87,7 @@ const Ticket = ({ matchDetails, onClose }) => {
               onChange={(e) => setEmail(e.target.value)}
               required
           />
-        </div>
+        </div> */}
 
         <div className="total-price">
           <strong>Total: </strong>₹{calculateTotal().toFixed(2)} 

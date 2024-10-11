@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import Dashboard from  "../Dashboard/Dashboard"
 
 import './Header.css';
@@ -9,21 +10,7 @@ const Header = () => {
   const[isCoachLoggedIn, setIsCoachLoggedIn] = useState(false) // Track login status
   const navigate = useNavigate();
 
-  // Check if the user is logged in on component mount
-  // useEffect(() => {
-  //   const token = localStorage.getItem('usertoken'); // Check if token exists in localStorage
-  //   if (token) {
-  //     setIsUserLoggedIn(true); // User is logged in
-  //   } else {
-  //     setIsUserLoggedIn(false); // No token, user is not logged in
-  //   }
-  //   const ctoken = localStorage.getItem('coachtoken');
-  //   if(ctoken) {
-  //     setIsCoachLoggedIn(true);
-  //   } else {
-  //     setIsCoachLoggedIn(false);
-  //    }
-  // }, []);
+
 
   useEffect(() => {
     const token = localStorage.getItem('usertoken');
@@ -38,7 +25,7 @@ const Header = () => {
   const handleUserLogout = () => {
     setIsUserLoggedIn(false);
     localStorage.removeItem('usertoken'); // clear any auth token
-    navigate('/login'); 
+    navigate('/'); 
     window.location.reload()
     
   };
@@ -51,6 +38,9 @@ const Header = () => {
      window.location.reload() 
      };
   
+  const handleGoBack =()=>{
+    navigate(-1)
+  }
 
   return (
     <header>
@@ -94,8 +84,19 @@ const Header = () => {
             <>
             <div className="coach-text">
             <h2>Welocme To Real Madrid</h2>
-            <button onClick={handleCoachLogout} className="logout-button">Logout</button>
-            </div>
+            <div className='butns'>
+             
+                  <button onClick={handleCoachLogout} className="logout-button">Logout</button>
+                  <div className="go-back-button" onClick={handleGoBack}>
+                    <ArrowLeft
+                      variant="outline"
+                      color="black"
+                      style={{ fontSize: "24px", marginRight: "10px" }}
+                    />
+                    <span>Go Back</span>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         

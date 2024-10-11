@@ -1,0 +1,93 @@
+.profile-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .buttonS, .buttonC {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .buttonS {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .buttonS:hover {
+    background-color: #218838;
+  }
+  
+  .buttonC {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .buttonC:hover {
+    background-color: #c82333;
+  }
+  
+  .buttonE {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  .buttonE:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+  }
+  
+  .welcome-message {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .welcome-message a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .welcome-message a:hover {
+    text-decoration: underline;
+  }
+  
+  .welcome-message h3 {
+    color:black;
+  }

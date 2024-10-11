@@ -52,7 +52,7 @@ const matchesData = {
             homeTeam: 'Real Madrid',
             homeLogo: '/images/RM.png',
             awayTeam: 'Real Valladolid',
-            awayLogo: 'images/RV.jpg',
+            awayLogo: 'images/RV.png',
             eventDetails: 'Football - First Team - Male',
             competition: 'La Liga',
             matchDay: 'Matchday 2',

@@ -19,7 +19,7 @@
   }
   
   .fa-sidebar-header {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   .fa-sidebar-nav {
@@ -74,4 +74,6 @@
   p {
     margin: 20px 0 0 0;
   }
-  
+  footer{
+    align-self: baseline;
+  }

@@ -51,6 +51,7 @@ nav a:hover {
 .actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-size: 15px;
   margin-left: auto;
   width:200px;
@@ -118,6 +119,7 @@ hr {
   }
 
   .actions {
+  
     display: none;
   }
 }
@@ -129,7 +131,7 @@ hr {
   border-bottom: 2px solid #ddd;
   font-size: large;
   align-items: center; /* Vertically center-aligns the items */
-  gap:900px
+  gap:800px;
 }
 
 .logout-button {
@@ -139,3 +141,27 @@ hr {
   padding: 10px 20px;
   cursor: pointer;
 }
+.butns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.go-back-button {
+  display: flex;
+  align-items: center; /* Aligns the icon and text vertically */
+  cursor: pointer;
+  color: black;
+  font-size: 16px;
+  margin-right: 25px;
+}
+
+.go-back-button:hover {
+  color: #333; /* Add a hover effect to change the color */
+}
+
+.go-back-button span {
+  margin-left: 1px; /* Adds spacing between the icon and the text */
+}
+

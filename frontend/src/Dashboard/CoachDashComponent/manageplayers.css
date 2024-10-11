@@ -1,0 +1,60 @@
+.table-container {
+  max-width: 100%; /* Limits the table's max-width */
+  padding: 10px;
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.scrollable-table {
+  width: auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* Prevents table from expanding unnecessarily */
+}
+
+.scrollable-table th, .scrollable-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.scrollable-table th {
+  background-color: #f4f4f4;
+  position: sticky; /* Keeps the headers visible during scrolling */
+  top: 0; /* Ensures the headers stick to the top */
+  z-index: 1; /* Ensures headers are on top of the rows */
+}
+
+.table-body {
+  display:block; /* Turns tbody into a block to allow scrolling */
+  max-height: 600px; /* Adjust this value based on your desired height */
+  width: 1100px;
+  overflow-y: auto;
+  border:  1px solid #ddd ; /* Enables vertical scrolling */
+}
+
+.scrollable-table td, .scrollable-table th {
+  width: 200px; /* Adjust the width of the cells as needed */
+}
+
+.scrollable-table td {
+  word-wrap: break-word; /* Ensures long text fits inside the cell */
+}
+.scrollable-table tr:hover{
+  background-color: #ddd;
+}
+.health-bar-container {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.health-bar {
+  height: 20px;
+  color: black;
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+  border: 1px solid black;
+}

@@ -41,11 +41,12 @@ const Login = () => {
       if (response.data.success) {
         localStorage.setItem('usertoken', response.data.token);
         localStorage.setItem('username', userDetails.username);
+        localStorage.setItem('useremail', userDetails.email);
         
         //alert(`Logged in as ', ${userDetails.username}`)
         navigate('/');
         window.location.reload()
-        console.log("navigtor");
+        console.log(userDetails);
   
         
       }
