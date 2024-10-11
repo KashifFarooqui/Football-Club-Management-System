@@ -1,89 +1,68 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes, Outlet } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { Menu, User, Ticket, ShoppingCart, LogOut, History, Info, Heart } from "lucide-react";
 
-// Placeholder components for the different pages
-const Tickets = () => <h2>Tickets Page</h2>;
-const Cart = () => <h2>Cart Page</h2>;
-const UserDetails = () => <h2>User Details Page</h2>;
+import "./dashboard.css"
 
-const Dashboard = () => {
+export default function Dashboard () {
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
+  const toggleSidebar = () => setIsOpen(!isOpen);
+  const username = localStorage.getItem('username')
+
+  
+
+  const menuItems = [
+    { icon: User, label: "View Profile" },
+    { icon: Ticket, label: "My Tickets" },
+    { icon: ShoppingCart, label: "Cart" },
+    { icon: History, label: "History" },
+    { icon: Info, label: "Info" },
+    { icon: Heart, label: "Values" }
+  ];
+
+ 
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <Router>
-      <div className="dashboard">
-        <Sidebar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<h2>Welcome to the Football Management System</h2>} />
-            <Route path="/tickets" element={<Tickets />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/user-details" element={<UserDetails />} />
-          </Routes>
-          <Outlet />
-        </main>
+    <div>
+      <button onClick={toggleSidebar} className="menu-button">
+        <Menu className="menu-icon"/>
+        <span className="sr-only">Toggle menu</span>
+      </button>
+      <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
+        <nav>
+          <h2>Hello, {username ? username : "Guest"}</h2>
+          {menuItems.map((item, index) => (
+            <button
+              key={index}
+              className="menu-item"
+              onClick={() => {
+                if (item.action) {
+                  item.action(); // Execute the action (e.g., for logout)
+                }
+              }}
+            >
+              <item.icon className="menu-icon" />
+              {item.label}
+            </button>
+          ))}
+        </nav>
       </div>
-    </Router>
+      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+    </div>
   );
 };
-
-const Sidebar = () => {
-  return (
-    <aside className="sidebar">
-      <nav>
-        <ul>
-          <li><Link to="/tickets">Tickets</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
-          <li><Link to="/user-details">User Details</Link></li>
-          <li><button onClick={() => console.log('Logout clicked')}>Logout</button></li>
-        </ul>
-      </nav>
-    </aside>
-  );
-};
-
-export default Dashboard;
-
-const styles = `
-  .dashboard {
-    display: flex;
-    height: 100vh;
-  }
-
-  .sidebar {
-    width: 200px;
-    background-color: #f0f0f0;
-    padding: 20px;
-  }
-
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .sidebar li {
-    margin-bottom: 10px;
-  }
-
-  .sidebar a {
-    text-decoration: none;
-    color: #333;
-  }
-
-  .sidebar button {
-    background: none;
-    border: none;
-    color: #333;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 0;
-  }
-
-  .main-content {
-    flex-grow: 1;
-    padding: 20px;
-  }
-`;
-
-// Inject the CSS into the document
-const styleElement = document.createElement('style');
-styleElement.textContent = styles;
-document.head.appendChild(styleElement);

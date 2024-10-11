@@ -9,6 +9,9 @@ const coachLogin = () => {
     coachid: '',
     password: ''
   });
+
+
+  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -38,8 +41,10 @@ const coachLogin = () => {
       const response = await axios.post('http://localhost:8000/api/coach/login', coachDetails);
 
       if (response.data.success) {
-        alert("Coach Logged in successfully");
-        navigate('/Dashboard');
+        
+        localStorage.setItem('coachtoken', response.data.token); 
+        navigate('/coachdashboard');
+        window.location.reload()
       }
     } catch (error) {
       console.error('Error Logging user:', error.response?.data?.message || error.message);

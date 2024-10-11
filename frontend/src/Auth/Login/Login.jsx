@@ -24,9 +24,10 @@ const Login = () => {
     navigate('/'); 
   };
 
-  const handleRegister = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault(); 
     const userDetails = {
+      username: formData.username,
       email: formData.email,
       password: formData.password,
     };
@@ -38,8 +39,15 @@ const Login = () => {
       const response = await axios.post('http://localhost:8000/api/users/login', userDetails);
 
       if (response.data.success) {
-        alert("User Logged in successfully");
-        navigate('/dashboard');
+        localStorage.setItem('usertoken', response.data.token);
+        localStorage.setItem('username', userDetails.username);
+        
+        //alert(`Logged in as ', ${userDetails.username}`)
+        navigate('/');
+        window.location.reload()
+        console.log("navigtor");
+  
+        
       }
     } catch (error) {
       console.error('Error Logging user:', error.response?.data?.message || error.message);
@@ -58,7 +66,18 @@ const Login = () => {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Login</h2>
-        <form className="register-form" onSubmit={handleRegister}>
+        <form className="register-form" onSubmit={handleLogin}>
+        <div className="form-group">
+            <label htmlFor="username">Name:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Enter Your Name"
+              onChange={handleChange}
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input

@@ -1,0 +1,67 @@
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: black;
+  padding-left: 80px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  color: black;
+  background-color: #faf3e0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This makes the items stretch across the sidebar */
+  padding-bottom: 20px; /* Add some padding for space at the bottom */
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 16px;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.filler-items {
+  flex-grow: 1; /* Ensures this section takes up the remaining space above the logout */
+}
+.filter-items:first-child{
+  margin-top: 100px;
+}
+
+.menu-icon {
+  margin-right: 10px;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

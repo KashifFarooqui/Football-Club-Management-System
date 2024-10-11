@@ -1,4 +1,4 @@
-/* Footer.css */
+
 
 .footer {
     background-color: #faf3e0; /* Light background for the footer */
@@ -59,4 +59,10 @@
       text-align: center;
     }
   }
+  .coach-txt{
+    padding: 20px 30px;
+    margin-left: 565px;
+    font-size: large;
+  }
+  
   

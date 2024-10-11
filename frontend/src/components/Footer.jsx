@@ -1,11 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Footer = () => {
+  const[isCoachLoggedIn, setIsCoachLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('coachtoken')
+    if(token){
+      setIsCoachLoggedIn(true)
+    } else {
+      setIsCoachLoggedIn(false)
+    }
+  },[])
+
+  
   return (
     <footer className="footer">
       <hr />
+      {!isCoachLoggedIn ? (
+      <>
       <div className="cont">
         <div className="row">
           <div className="col-md-3">
@@ -46,6 +64,15 @@ const Footer = () => {
 
         </div>
       </div>
+      </>
+      ):(
+        <>
+         <hr />
+        <div className='coach-txt'>
+          <h2>Thankyou For Joining Real Madrid</h2>
+        </div>
+        </>
+      )}
     </footer>
   );
 };

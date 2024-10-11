@@ -1,266 +1,175 @@
-<!--import React from 'react';
-import 'swiper/swiper-bundle.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import './mens.css';
+<!--import { useState } from 'react';
+import { Users, Target, Clipboard, Calendar, CreditCard, LogOut } from 'lucide-react';
+import './coachdashboard.css'; // Ensure your styles are applied correctly
 
+const Sidebar = ({ activeItem, setActiveItem }) => {
+  const sidebarItems = [
+    { name: 'Manage Players', icon: Users },
+    { name: 'Team Strategy', icon: Target },
+    { name: 'Training Plans', icon: Clipboard },
+    { name: 'Schedule', icon: Calendar },
+    { name: 'Salary', icon: CreditCard },
+    { name: 'Logout', icon: LogOut, action: () => localStorage.clear() }, // Clear localStorage on logout
+  ];
 
-const players = {
-    coach: [
-      {
-        name: "Carlo Ancelotti",
-        position: "Head Coach",
-        nationality: "Italian",
-        age:"65 Year Old",
-        image: "/images/ancelotti.jpg"
-      }
-    ],
-    goalkeepers: [
-      {
-        name: "Thibaut Courtois",
-        position: "Goalkeeper",
-        nationality: "Belgian",
-        age:"32 Year Old",
-        image: "/images/courtois.jpg"
-      },
-      {
-        name: "Andriy Lunin",
-        position: "Goalkeeper",
-        nationality: "Ukrainian",
-        age:"25 Year Old",
-        image: "/images/lunin.jpg"
-      }
-    ],
-    forward: [
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#9 Kylian Mbappé",
-        position: "Forward",
-        nationality: "French",
-        age:"26 Year Old",
-        image: "/images/kmbappe.webp"
-      },
-      {
-        name: "#11 Rodrygo Goes",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"23 Year Old",
-        image: "/images/rodrygo.webp"
-      },
-      {
-        name: "#16 Endrick de Sousa",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"18 Year Old",
-        image: "/images/endrick.webp"
-      },
-      {
-        name: "#21 Brahim Díaz",
-        position: "Forward",
-        nationality: "Malaga",
-        age:"25 Year Old",
-        image: "/images/brahim.webp"
-      },
-    ],
-    midfielder : [
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-      {
-        name: "#7 Vinicius Junior",
-        position: "Forward",
-        nationality: "Brasilia",
-        age:"24 Year Old",
-        image: "/images/vinijr.webp"
-      },
-    ]
-  };
-
-const Mens =()=> 
-     {
-    return (
-        <main>
-            <div className="shop-container">
-                <h1>Men's Team</h1>
-                <div className="navbar"></div>
-            </div>
-            <h1> Coaches</h1>
-            <div className='card-container'>
-                {players.coach.map((coach, index) => (
-            <div key={index} className="player-card">
-                <img className="image" src={coach.image} alt={coach.name} />
-                <h3>{coach.name}</h3>
-                <p>{coach.age}</p>
-                <p>{coach.position}</p>
-                <p>{coach.nationality}</p>
-            </div>
-            ))}
-            </div>
-            {/*Goalkeeper*/}
-            <h1>Goalkeepers</h1>
-            <hr />
-            <div className="card-container">
-                {players.goalkeepers.map((player, index) => (
-                <div key={index} className="player-card">
-                    <img className="image" src={player.image} alt={player.name} />
-                    <h3>{player.name}</h3>
-                    <p>{player.age}</p>
-                    <p>{player.position}</p>
-                    <p>{player.nationality}</p>
-                </div>
-            ))}
-            </div>
-
-             {/*Forward*/}
-             <h1>Forward</h1>        
-            <hr />
-            <div className="card-container">
-                {players.forward.map((player, index) => (
-                <div key={index} className="player-card">
-                    <img className="image" src={player.image} alt={player.name} />
-                    <h3>{player.name}</h3>
-                    <p>{player.age}</p>
-                    <p>{player.position}</p>
-                    <p>{player.nationality}</p>
-                </div>
-            ))}
-          
-            </div>
-
-            {/*MidFielder*/}
-            <h1>Mid-Fielder</h1>
-            
-            <hr />
-            <div className="card-container">
-                {players.midfielder.map((player, index) => (
-                <div key={index} className="player-card">
-                    <img className="image" src={player.image} alt={player.name} />
-                    <h3>{player.name}</h3>
-                    <p>{player.age}</p>
-                    <p>{player.position}</p>
-                    <p>{player.nationality}</p>
-                </div>
-            ))}
-            </div>
-        </main>
-    );
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <h2>Coach Dashboard</h2>
+      </div>
+      <nav className="sidebar-nav">
+        {sidebarItems.map((item) => (
+          <button
+            key={item.name}
+            className={`sidebar-item ${activeItem === item.name ? 'active' : ''}`}
+            onClick={() => {
+              if (item.action) {
+                item.action(); // Execute the logout action
+              } else {
+                setActiveItem(item.name); // Set active item in the sidebar
+              }
+            }}
+          >
+            <item.icon className="sidebar-icon" />
+            <span>{item.name}</span>
+          </button>
+        ))}
+      </nav>
+    </aside>
+  );
 };
 
-export default Mens;
+const MainContent = ({ activeItem }) => {
+  return (
+    <main className="main-content">
+      <h1>{activeItem}</h1>
+      <p>Content for {activeItem} goes here.</p>
+    </main>
+  );
+};
 
+const CoachDashboard = () => {
+  const [activeItem, setActiveItem] = useState('Manage Players'); // Default active item
 
-/* General Container Styling */
-.coach-container {
-    padding: 20px;
-    background-color:#fff;
-    color:black;
-    display: flex;
-    margin: auto;  
-    background-color: blanchedalmond;
-    align-content: center;
-  }
-  
-  /* Card Container for horizontal layout */
-  .card-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-    color: black;
-    background-color: blanchedalmond;
-    
+  return (
+    <div className="dashboard">
+      <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
+      <MainContent activeItem={activeItem} />
+    </div>
+  );
+};
 
-  }
+export default CoachDashboard;
+-->
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Mainbody";
+import News from "./components/News";
+import Schedule from "./components/Schedule";
+import Shop from "./components/Shop";
+import Interview from "./components/Interview";
+import Watch from "./components/Watch";
+import Mens from "./components/Mens";
+import Values from "./components/Values";
+import Women from "./components/Women";
+import History from "./components/History";
+import Sponsors from "./components/Sponsors";
+import Honors from "./components/Honors";
+import Login from "./Auth/Login/Login";
+import Register from "./Auth/Signup/Register";
+import Ticket from "./components/Ticket";
+import CoachLogin from "./Auth/CoacLogin/coachLogin";
+import CoachRegister from "./Auth/CoacLogin/CoachRegister";
+import Dashboard from "./Dashboard/Dashboard";
+import CoachDashboard from "./Dashboard/CoachDashboard";
+
+function App() {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isCoachLoggedIn, setIsCoachLoggedIn] = useState(false);
+
   
-  /* Styling for Individual Player Cards */
-  .player-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 250px;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
-  }
-  
-  .player-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .player-card h3 {
-    font-size: 1.2rem;
-    margin: 10px 0;
-  }
-  
-  .player-card p {
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
-  /* Horizontal Line */
-  hr {
-    border: 0;
-    height: 1px;
-    background-color: #ccc;
-    margin: 20px 0;
-  }
-  
-  /* Section Titles */
-  h1 {
-    text-align: center;
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  .image{
-    border:2px solid black;
-  }
+  // Check if there are tokens in localStorage on component mount
+  useEffect(() => {
+    const userToken = localStorage.getItem("usertoken");
+    const coachToken = localStorage.getItem("coachtoken");
+    console.log("User Token:", userToken);  
+    console.log("Coach Token:", coachToken); 
+
+    if (userToken) {
+      setIsUserLoggedIn(true);
+    }
+
+    if (coachToken) {
+      setIsCoachLoggedIn(true);
+      }
+    }, [isUserLoggedIn, isCoachLoggedIn]);
+
+    // Logout handlers for both user and coach
+    const handleUserLogout = () => {
+      setIsUserLoggedIn(false);
+      localStorage.removeItem('userToken');
+      window.location.href="/";
+    };
+
+    const handleCoachLogout = () => {
+      setIsCoachLoggedIn(false);
+      localStorage.removeItem('coachToken');
+      window.location.href="/";
+    };
+
+  <!--return (
+    <Router>
+      <div className="App">
+        
+      <Header 
+          isUserLoggedIn={isUserLoggedIn} 
+          isCoachLoggedIn={isCoachLoggedIn} 
+          onUserLogout={handleUserLogout}
+          onCoachLogout={handleCoachLogout} 
+        />
+
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Main />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/interview" element={<Interview />} />
+          <Route path="/watch" element={<Watch />} />
+          <Route path="/mens" element={<Mens />} />
+          <Route path="/values" element={<Values />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/honors" element={<Honors />} />
+
+          {/* Auth Routes */}
+          
+          <Route path="/login" element={isUserLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/coachlogin" element={isCoachLoggedIn ? <Navigate to="/coachdashboard"/> : <CoachLogin />} />
+          <Route path="/coachregister" element={<CoachRegister />} />
+          <Route path="/register" element={isUserLoggedIn ? <Navigate to="/coachdashboard" /> : <Register />} />
+          
+          <Route path="/ticket" element={<Ticket />} />
+
+          {/* Dashboard Routes */}
+          
+          <Route path="/dashboard" element={isUserLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+          <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
+          
+          {/* Default redirect */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+
+        
+        <Footer />
+        
+      </div>
+      
+    </Router>
+  );
+}
+
+export default App;

@@ -121,3 +121,21 @@ hr {
     display: none;
   }
 }
+.coach-text {
+  display: flex;
+  justify-content: space-between; /* This moves the items to the extreme left and right */
+  padding: 20px 30px;
+  background-color: #faf3e0;
+  border-bottom: 2px solid #ddd;
+  font-size: large;
+  align-items: center; /* Vertically center-aligns the items */
+  gap:900px
+}
+
+.logout-button {
+  color: white;
+  background-color: #333;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
