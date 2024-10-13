@@ -47,8 +47,8 @@
   
   .form-group input:focus, 
 .form-group input[value] {
-    color: black ; /* Ensure text color is black after selecting */
-    background-color: white; /* Background color when text is selected */
+    color: black ;
+    background-color:white; /* Background color when text is selected */
 }
  
   .form-actions {

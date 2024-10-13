@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { CartProvider } from "./context/cartContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Mainbody";
@@ -22,7 +23,9 @@ import CoachRegister from "./Auth/CoacLogin/CoachRegister";
 import Dashboard from "./Dashboard/Dashboard";
 import CoachDashboard from "./Dashboard/CoachDashboard";
 import ManagePlayers from "./Dashboard/CoachDashComponent/ManagePlayers";
-import Profile from "./Dashboard/UserDashComponent/Profile"
+import Profile from "./Dashboard/UserDashComponent/Profile";
+import CartPage from "./Pages/Cart/CartPage";
+
 
 
 // const ProtectedRoute = ({ children, isLoggedIn}) => {
@@ -60,6 +63,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <CartProvider>
       <Header 
           isUserLoggedIn={isUserLoggedIn}
           isCoachLoggedIn={isCoachLoggedIn} 
@@ -71,6 +75,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/news" element={<News />} />
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/ticket" element={<Ticket />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/interview" element={<Interview />} />
           <Route path="/watch" element={<Watch />} />
@@ -84,12 +89,12 @@ function App() {
           <Route path="/coachlogin" element={isCoachLoggedIn ? <Navigate to="/coachdashboard" /> : <CoachLogin />} />
           <Route path="/coachregister" element={<CoachRegister />} />
           <Route path="/register" element= { <Register />} />
-          <Route path="/ticket" element={<Ticket />} />
+          <Route path="/cart" element={<CartPage/>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
           <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" /> } />
           <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to ="/coachlogin" /> } />
-
+         
           //protectedRoutes
           {/* <Route path="/profile" element = {
             <ProtectedRoute isLoggedIn={isUserLoggedIn}>
@@ -99,6 +104,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
+        </CartProvider>
       </div>
     </Router>
   );

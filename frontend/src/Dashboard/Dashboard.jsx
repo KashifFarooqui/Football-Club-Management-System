@@ -33,11 +33,15 @@ export default function Dashboard () {
   const handleProfileClick = () => {
     navigate('/profile')
   }
+  const handleCartClick = () => {
+    navigate('/cart')
+  }
+ 
 
   const menuItems = [
     { icon: User, label: "View Profile", action:handleProfileClick },
-    { icon: Ticket, label: "My Tickets" },
-    { icon: ShoppingBasket, label: "Cart"},
+    { icon: Ticket, label: "My Tickets"},
+    { icon: ShoppingBasket, label: "Cart", action:handleCartClick},
     { icon: ShoppingCart, label: "Shop", action:handleShopClick },
     { icon: CalendarRange, label: "Upcoming Matches", action:handleScheduleClick },
     { icon: TrophyIcon, label: "Trophies", action:handleHonorClick },

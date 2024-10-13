@@ -1,22 +1,77 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
+import  CartContext  from "../../context/cartContext";
 import './shop.css';
 
+
+
 const Shop = () => {
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const { addToCart } = useContext(CartContext);
+    const [isUserLoggedIn, setIsUserLoggedin] = useState(false);
+    
+
     const [cartQuantities, setCartQuantities] = useState({
         jerseys: Array(6).fill(1),
         shoes: Array(3).fill(1),
         accessories: Array(3).fill(1),
     });
+  
+    useEffect(()=>{
+        const token = localStorage.getItem("usertoken")
+        if(token) {
+            setIsUserLoggedin(true)
+        }
+    },[])
 
-    const updateQuantity = (type, index, delta) => {
-        setCartQuantities((prevState) => {
-            const updatedQuantities = [...prevState[type]];
-            updatedQuantities[index] = Math.min(Math.max(updatedQuantities[index] + delta, 1), 10);
-            return { ...prevState, [type]: updatedQuantities };
+    const handleViewCart = () =>{
+        if(!setIsUserLoggedin) {
+            navigate('/login')
+        } else {
+            navigate('/cart')
+        }
+    } 
+    const handleAddToCart = async (product, category, index) => {
+        if (!category || index === undefined) {
+            console.error('Category or Index missing');
+            return;
+        }
+        if(!isUserLoggedIn){
+            alert("You Must Be Logged In To Procced")
+            navigate("/login")
+            return;
+        }
+        setLoading(true);
+        try {
+            const quantity = cartQuantities[category][index];
+            const itemToAdd = { ...product, quantity, category };
+            
+            console.log('Item to add:', itemToAdd);
+            const response = await addToCart(itemToAdd);
+            console.log('Item added to cart:', response);
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
+    
+    const updateQuantity = (type, index, change) => {
+        setCartQuantities((prevQuantities) => {
+            const updatedQuantities = { ...prevQuantities };
+            // Ensure quantity never goes below 1 and update correctly based on previous state
+            updatedQuantities[type] = updatedQuantities[type].map((qty, idx) =>
+                idx === index ? Math.max(1, qty + change) : qty
+            );
+            return updatedQuantities;
         });
     };
+    
 
-    const jerseys = [
+      const jerseys = [
         { id: 1, name: "Kyllian Mbappe", price: "90 €", image: "/images/mbappe.jpg" },
         { id: 2, name: "Vinícius Júnior Jersey", price: "90 €", image: "/images/vini.jpg" },
         { id: 3, name: "Karim Benzema Jersey", price: "90 €", image: "/images/benzima.jpg" },
@@ -24,18 +79,19 @@ const Shop = () => {
         { id: 5, name: "Jude Bellingham Jersey", price: "90 €", image: "/images/bellingam.jpg" },
         { id: 6, name: "Federico Valverde Jersey", price: "90 €", image: "/images/federico.jpg" }
     ];
-
+    
     const shoes = [
-        { id: 1, name: "Nike Mercurial", price: "120 €", image: "/images/nike_mercurial.jpg" },
-        { id: 2, name: "Adidas Predator", price: "115 €", image: "/images/adidas_predator.jpg" },
-        { id: 3, name: "Puma Future", price: "110 €", image: "/images/puma_future.jpg" }
+        { id: 7, name: "Nike Mercurial", price: "120 €", image: "/images/nike_mercurial.jpg" },
+        { id: 8, name: "Adidas Predator", price: "115 €", image: "/images/adidas_predator.jpg" },
+        { id: 9, name: "Puma Future", price: "110 €", image: "/images/puma_future.jpg" }
     ];
-
+    
     const accessories = [
-        { id: 1, name: "Real Madrid Cap", price: "25 €", image: "/images/rm_cap.jpg" },
-        { id: 2, name: "Real Madrid Scarf", price: "20 €", image: "/images/rm_scarf.jpg" },
-        { id: 3, name: "Real Madrid Gloves", price: "30 €", image: "/images/rm_gloves.jpg" }
+        { id: 10, name: "Real Madrid Cap", price: "25 €", image: "/images/rm_cap.jpg" },
+        { id: 11, name: "Real Madrid Scarf", price: "20 €", image: "/images/rm_scarf.jpg" },
+        { id: 12, name: "Real Madrid Gloves", price: "30 €", image: "/images/rm_gloves.jpg" }
     ];
+    
 
     const [activeCategory, setActiveCategory] = useState("jerseys");
 
@@ -49,10 +105,14 @@ const Shop = () => {
                     <button onClick={() => updateQuantity(type, index, -1)}>-</button>
                     <span>{cartQuantities[type][index]}</span>
                     <button onClick={() => updateQuantity(type, index, 1)}>+</button>
-                </div >
+                </div>
                 <div className="buttons">
-                    <button className="buy-now">Buy Now</button> 
-                    <button className="add-to-cart-button">Add to Cart</button>
+                    <button className="buy-now">Buy Now</button>
+                    <button className="add-to-cart-button" disabled={loading} onClick={() => handleAddToCart(item, type, index)}>
+                     {loading ? 'Adding...' : 'Add to Cart'}
+                    </button>
+
+
                 </div>
             </div>
         ));
@@ -71,6 +131,18 @@ const Shop = () => {
                 {activeCategory === "jerseys" && renderProducts(jerseys, 'jerseys')}
                 {activeCategory === "shoes" && renderProducts(shoes, 'shoes')}
                 {activeCategory === "accessories" && renderProducts(accessories, 'accessories')}
+            </div>
+            <div className="view-cart-button" >
+                
+                    <ShoppingCart
+                      variant="outline"
+                      color="black"
+                      onClick={handleViewCart}
+                    />
+                    <div className="cart">
+                        <span>Cart</span>
+                        
+                    </div>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import './ticket.css';
 const Ticket = ({ matchDetails, onClose }) => {
   const [ticketCount, setTicketCount] = useState(1);
   const [ticketType, setTicketType] = useState('regular');
-  const [email, setEmail] = useState('');
+
 
   
   const parsePrice = (priceString) => {
@@ -77,17 +77,6 @@ const Ticket = ({ matchDetails, onClose }) => {
           </label>
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="email">Email Address:</label>
-          <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-          />
-        </div> */}
 
         <div className="total-price">
           <strong>Total: </strong>₹{calculateTotal().toFixed(2)} 

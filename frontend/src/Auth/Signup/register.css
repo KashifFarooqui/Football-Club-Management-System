@@ -93,22 +93,28 @@
   }
   
   .register-type {
-    display: flex;               /* Use flexbox to align items in a row */
-    justify-content: center;     /* Center the items horizontally */
+    display: flex;              
+    justify-content: center;     
     margin-bottom: 20px;
     gap: 15px;  
     font-size: small; 
-    font-style: bold;               /* Add spacing between the labels */
+    font-style: bold;             
   }
   
   .register-type label {
     font-weight: bold;
     color: #243b55;
-    display: flex;              /* Ensure label is a flex container */
-    align-items: center;        /* Align items vertically in the center */
+    display: flex;              
+    align-items: center;       
   }
   
   .register-type input {
-    margin-right: 5px;          /* Small space between the radio input and label */
+    margin-right: 5px;         
   }
-  
+ 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px #ef30 inset !important; 
+    -webkit-text-fill-color: black !important;
+}
