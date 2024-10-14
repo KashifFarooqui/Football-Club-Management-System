@@ -2,7 +2,7 @@ import {Cart} from "../models/cart.models.js";
 
 const AddItem = async(req, res) => {
     try {
-        const { productId, name, price, quantity, category} = req.body;
+        const { productId, name, price, quantity, image, category} = req.body;
         console.log('Received Request', req.body);
 
         if (!productId || !name || !price || !quantity || !category) {
@@ -22,7 +22,7 @@ const AddItem = async(req, res) => {
                 item:existingItem
             });
         } else {
-            const newItem = new Cart({ productId, name, price, quantity, category});
+            const newItem = new Cart({ productId, name, price, quantity, image, category});
             await newItem.save();
             res.status(200).
             json({

@@ -3,64 +3,64 @@ import { addItem, getItem, updateItem, deleteItem } from '../Pages/Cart/cartServ
 
 const CartContext = createContext();
 
-export const CartProvider =({children}) => {
-    const [cart, setCart] = useState([])
+export const CartProvider = ({children}) => {
+    const [cart, setCart] = useState([]);
+    const [forceUpdate, setForceUpdate] = useState(false); 
 
-    useEffect(()=> {
-        const fetchCart = async ()=> {
-            try{
-                const items = await getItem()
-                setCart(items)
-            }
-            catch(error) {
-                    console.error('failed fetching items',error)
+    useEffect(() => {
+        const fetchCart = async () => {
+            try {
+                const items = await getItem();
+                setCart(items);
+            } catch (error) {
+                console.error('Failed fetching items', error);
             }
         };
         fetchCart();
-    },[])
+    }, [forceUpdate]);
 
     const addToCart = async (item) => {
         try {
-            const newItem = await addItem(item); // Assume this returns the new item object
-            setCart((prevCart) => [...prevCart, newItem]); // Correct way to update state
+            const newItem = await addItem(item);
+            setCart((prevCart) => [...prevCart, newItem]);
         } catch (error) {
-            console.error('failed to add item', error);
+            console.error('Failed to add item', error);
         }
     };
 
-    const getTotalItems = () => {
-        return cart.reduce((total, item) => {
-            const quantity = Number(item.quantity);
-            return total + (isNaN(quantity) ? 0 : quantity);
-        }, 0);
-    };
 
-    const updateToCart = async(id, quantity) => {
+    const updateToCart = async (id, quantity) => {
+        
+    
         try {
             const updateNewItem = await updateItem(id, quantity);
-            const updatedCart = cart.map((item) =>
-            item._id === updateNewItem._id ? updateNewItem : item);
-            setCart(updatedCart);
+        
+            setCart((prevCart) => {
+                const updatedCart =   prevCart.map((item) =>
+                    item._id === updateNewItem._id ? { ...item, quantity: updateNewItem.quantity } : item
+                );
+                return [...updatedCart]
+            });
+            setForceUpdate((prev) => !prev);
         } catch (error) {
-            console.error('failed to update item', error);
+            console.error('Failed to update item', error);
         }
-    }
+    };
 
-    const removeFromCart = async (id) =>{
+    const removeFromCart = async (id) => {
         try {
             await deleteItem(id);
-            setCart(cart.filter((item) => item._id !== id));
+            setCart((prevCart) => prevCart.filter((item) => item._id !== id));  // Use the callback form
         } catch (error) {
-            console.error('failed deleteing item', error)
+            console.error('Failed to delete item', error);
         }
-    }
+    };
 
-    return(
+    return (
         <CartContext.Provider value={{cart, addToCart, updateToCart, removeFromCart}}>
             {children}
         </CartContext.Provider>
-    )
-}
+    );
+};
+
 export default CartContext;
-
-

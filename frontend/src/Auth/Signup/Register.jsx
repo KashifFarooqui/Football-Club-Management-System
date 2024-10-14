@@ -7,7 +7,8 @@ const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
+    adddress:''
   });
   const navigate = useNavigate();
 
@@ -32,12 +33,17 @@ const Register = () => {
       username: formData.username,
       email: formData.email,
       password: formData.password,
+      address: formData.address
     };
 
     try {
       const response = await axios.post('http://localhost:8000/api/users/register', userDetails);
 
       if (response.status === 201) {
+        localStorage.setItem('usertoken', response.data.token);
+        localStorage.setItem('username', userDetails.username);
+        localStorage.setItem('useremail', userDetails.email);
+        localStorage.setItem('useraddress', userDetails.address);
         alert("User registered successfully");
         navigate('/login');
       }
@@ -72,6 +78,17 @@ const Register = () => {
               name="email"
               required
               placeholder="Enter Your Email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address:</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              required
+              placeholder="Enter Your Address"
               onChange={handleChange}
             />
           </div>

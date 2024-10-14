@@ -4,24 +4,22 @@ import axios from "axios";
 const API_URI = 'http://localhost:8000/api/shop/cart';
 
 export const addItem = async (product) => {
-    try{
+    try {
         const response = await axios.post(`${API_URI}/add`, {
-            productId:product.id,
-            name:product.name,
-            price:product.price,
-            quantity:1,
-            category:product.category
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity,
+            image: product.image,  
+            category: product.category
         });
-        console.log('added item')
-        return response.data
-        
-        
-    }
-    catch(error){
+        return response.data.item; 
+    } catch (error) {
         console.error('error adding item to cart', error);
-        throw error
+        throw error;
     }
-}
+};
+
 
 export const getItem = async ()=> {
     try{
@@ -36,9 +34,11 @@ export const getItem = async ()=> {
 
 export const updateItem = async (cartItemId, quantity)=> {
     try {
+        
         const response = await axios.put(`${API_URI}/put/${cartItemId}`,{
             quantity:quantity
         });
+       
         return response.data
     } catch (error) {
         console.error('error upadating item',error);

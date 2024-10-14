@@ -42,8 +42,7 @@ const Login = () => {
         localStorage.setItem('usertoken', response.data.token);
         localStorage.setItem('username', userDetails.username);
         localStorage.setItem('useremail', userDetails.email);
-        
-        //alert(`Logged in as ', ${userDetails.username}`)
+        localStorage.setItem('useraddress', userDetails.address);
         navigate('/');
         window.location.reload()
         console.log(userDetails);

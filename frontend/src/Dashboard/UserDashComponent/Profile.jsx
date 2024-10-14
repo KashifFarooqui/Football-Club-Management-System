@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import './profile.css';  // CSS file for styling
+import axios from 'axios';
+import './profile.css';  
 
 const Profile = () => {
   const [username, setUsername] = useState('');
   const [useremail, setUseremail] = useState('');
+  const [useraddress, setUseraddress] = useState('');
   const [isEditing, setIsEditing] = useState(false); // Toggle for edit mode
 
   useEffect(() => {
     // Retrieve stored data from localStorage
     const storedUsername = localStorage.getItem('username') || 'John Doe';  // Default if not found
     const storedUseremail = localStorage.getItem('useremail') || 'john.doe@example.com';  // Default if not found
+    const storedUseraddress = localStorage.getItem('useraddress') || '123 Main St. E';  // Default if not found
 
     setUsername(storedUsername);
     setUseremail(storedUseremail);
+    setUseraddress(storedUseraddress);
   }, []);
 
   // Function to toggle edit mode
@@ -21,16 +25,33 @@ const Profile = () => {
   };
 
   // Function to handle form submission and save updated profile to localStorage
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();  // Prevent default form submission
 
-    // Save the updated profile info to localStorage
-    localStorage.setItem('username', username);
-    localStorage.setItem('useremail', useremail);
+    try {
+        // Ensure the request URL is correct and the variables hold the updated values
+        const response = await axios.put('http://localhost:8000/api/users/profile', {
+            username,       // Send updated username
+            email: useremail,   // Send updated email
+            address: useraddress,  // Send updated address
+        });
 
-    // Exit edit mode after saving
-    setIsEditing(false);
+        if (response.data.success) {
+            
+            localStorage.setItem('username', username);
+            localStorage.setItem('useraddress', useraddress);
+
+            // Exit edit mode after saving
+            setIsEditing(false);
+        } else {
+            console.error('Failed to update profile in the backend:', response.data.message);
+        }
+    } catch (error) {
+        console.error('Error updating profile:', error);
+    }
   };
+
+  
 
   return (
     <div className="profile-container">
@@ -54,6 +75,17 @@ const Profile = () => {
               type="email"
               id="useremail"
               value={useremail}
+              onChange={(e) => setUseremail(e.target.value)}
+             
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address:</label>
+            <input
+              type="text"
+              id="address"
+              value={useraddress}
+              onChange={(e) => setUseraddress(e.target.value)}
              
             />
           </div>
@@ -67,6 +99,7 @@ const Profile = () => {
         <div className="profile-info">
           <p><strong>Name:</strong> {username}</p>
           <p><strong>Email:</strong> {useremail}</p>
+          <p><strong>Address:</strong> {useraddress}</p>
         </div>
       )}
 

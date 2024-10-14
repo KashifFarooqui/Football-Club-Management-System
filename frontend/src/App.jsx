@@ -25,7 +25,9 @@ import CoachDashboard from "./Dashboard/CoachDashboard";
 import ManagePlayers from "./Dashboard/CoachDashComponent/ManagePlayers";
 import Profile from "./Dashboard/UserDashComponent/Profile";
 import CartPage from "./Pages/Cart/CartPage";
-
+import Sucess from "./Checkout/sucess";
+import Cancel from "./Checkout/cancel";
+import CheckoutButton from "./Checkout/CheckoutButton";
 
 
 // const ProtectedRoute = ({ children, isLoggedIn}) => {
@@ -94,7 +96,9 @@ function App() {
           <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
           <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" /> } />
           <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to ="/coachlogin" /> } />
-         
+          <Route path="/sucess" element={<Sucess />} />
+          <Route path="/cancel" element={<Cancel />} />
+          <Route path="/create-checkout-session" element={<CheckoutButton />} />
           //protectedRoutes
           {/* <Route path="/profile" element = {
             <ProtectedRoute isLoggedIn={isUserLoggedIn}>

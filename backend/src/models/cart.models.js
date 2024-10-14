@@ -15,6 +15,9 @@ const CartSchema = new mongoose.Schema({
     type: Number, 
     required: true, 
     min: 1 },
+    image: { 
+      type: String, 
+      required: false }, 
   category: { 
     type: String,
     required: true }
