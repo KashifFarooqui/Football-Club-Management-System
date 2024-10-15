@@ -1,25 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import CartContext from "../../context/cartContext";
 import { Trash2, Plus, Minus } from "lucide-react";
-import CheckoutButton from "../../Checkout/CheckoutButton.jsx";
+import { CheckoutButton }from "../../Checkout/CheckoutButton.jsx";
 import "./cartpage.css";
 
 const CartPage = () => {
-  const { cart, removeFromCart, updateToCart } = useContext(CartContext);
+  const { cart, removeFromCart, updateToCart, clearCart } = useContext(CartContext);
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + (parseFloat(item.price) * item.quantity), 0).toFixed(2);
   };
-
+  const cartTotal = getTotalPrice();
   const handleSizeChange = (item, newSize) => {
     updateToCart(item._id, item.quantity, newSize);
   };
 
+  
   return (
+    
     <div className="shopping-cart">
       <h1 className="cart-header">Shopping Cart</h1>
       {cart.length === 0 ? (
+        <>
+        <div className="empty-cart-message">
         <p className="empty-cart-message">Your cart is empty</p>
+        <a  className="empty-cart-message" href="/shop">Start Filling Your Cart</a>
+        </div>
+        </>
       ) : (
         <>
           <div className="cart-items-list">
@@ -29,7 +36,7 @@ const CartPage = () => {
                   <img src={item.image} alt={item.name} className="cart-item-image" />
                   <div className="cart-item-details">
                     <h2 className="cart-item-name">{item.name}</h2>
-                    <p className="cart-item-price">Price: {item.price} €</p>
+                    <p className="cart-item-price">Price: {item.price} </p>
                    
                     <div className="size-selector">
                       <label htmlFor={`size-${item._id}`}>Size:</label>
@@ -80,10 +87,16 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-
-          <div className="cart-total">
-            <h2>Total Price: {getTotalPrice()} €</h2>
-            <CheckoutButton />
+          <div className="total">
+          <h2>Total Price: {cartTotal} €</h2>
+          </div>
+          <div className="cart-buttons">
+          
+            <CheckoutButton totalAmount={cartTotal}/>
+            <button className="clear-cart-button"
+            onClick={()=>clearCart()}>
+              Clear Cart
+            </button>
           </div>
         </>
       )}

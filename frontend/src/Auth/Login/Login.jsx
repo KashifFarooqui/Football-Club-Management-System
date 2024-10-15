@@ -42,7 +42,7 @@ const Login = () => {
         localStorage.setItem('usertoken', response.data.token);
         localStorage.setItem('username', userDetails.username);
         localStorage.setItem('useremail', userDetails.email);
-        localStorage.setItem('useraddress', userDetails.address);
+    
         navigate('/');
         window.location.reload()
         console.log(userDetails);
@@ -50,14 +50,15 @@ const Login = () => {
         
       }
     } catch (error) {
-      console.error('Error Logging user:', error.response?.data?.message || error.message);
+      console.error('Error Logging user:', 
+      error.response?.data?.message || error.message);
       alert('Error Logging user. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  // New functionality for "Login as Coach"
+ 
   const handleCoachLogin = () => {
     navigate('/coachlogin');
   };

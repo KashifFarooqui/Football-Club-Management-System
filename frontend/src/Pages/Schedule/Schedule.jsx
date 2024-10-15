@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Ticket from "../Ticket/Ticket";
 import './schedule.css';
+import { useNavigate } from "react-router-dom";
 
 const matchesData = {
     Jul: [],   
@@ -15,8 +16,8 @@ const matchesData = {
             matchDay: 'Matchday 7',
             dateTime: 'Sunday, Oct 6, 12:30 AM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200',  
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200',  
+            generalPrice: 'Capacity for general public from €500', 
         },
         {
             homeTeam: 'Real Madrid',
@@ -28,8 +29,8 @@ const matchesData = {
             matchDay: 'Matchday 10',
             dateTime: 'Sunday, Oct 20, 12:30 AM',
             location: 'Municipal de Balaidos',
-            vipPrice: 'VIP from ₹ 1200',
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200',
+            generalPrice: 'Capacity for general public from €500', 
         }
     ],
     Nov: [
@@ -43,8 +44,8 @@ const matchesData = {
             matchDay: 'Round 4',
             dateTime: 'Wednesday, Nov 6, 1:30 AM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200', 
-            generalPrice: 'Capacity for general public from ₹ 500',
+            vipPrice: 'VIP from €1200', 
+            generalPrice: 'Capacity for general public from €500',
         },
     ],
     Dec: [
@@ -58,8 +59,8 @@ const matchesData = {
             matchDay: 'Matchday 2',
             dateTime: 'Sunday, Dec 25, 5:00 PM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200', 
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200', 
+            generalPrice: 'Capacity for general public from €500', 
         },
         {
             homeTeam: 'Real Madrid',
@@ -71,8 +72,8 @@ const matchesData = {
             matchDay: 'Matchday 3',
             dateTime: 'Saturday, Dec 31, 6:00 PM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200', 
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200', 
+            generalPrice: 'Capacity for general public from €500', 
         }
     ],
     Jan: [
@@ -86,8 +87,8 @@ const matchesData = {
             matchDay: 'Matchday 5',
             dateTime: 'Sunday, Jan 25, 8:00 PM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200',
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200',
+            generalPrice: 'Capacity for general public from €500', 
         },
         {
             homeTeam: 'Real Madrid',
@@ -99,8 +100,8 @@ const matchesData = {
             matchDay: 'Matchday 5',
             dateTime: 'Monday, Jan 30, 8:00 PM',
             location: 'Estadio Santiago Bernabéu',
-            vipPrice: 'VIP from ₹ 1200', 
-            generalPrice: 'Capacity for general public from ₹ 500', 
+            vipPrice: 'VIP from €1200', 
+            generalPrice: 'Capacity for general public from €500', 
         }
     ]  
 };
@@ -110,6 +111,10 @@ const Schedule = () => {
     const [selectedMonth, setSelectedMonth] = useState('Oct');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedMatch, setSelectedMatch] = useState(null);
+    const [isUserLoggedIn, setIsUserLoggedin] = useState(false);
+    const navigate = useNavigate()
+    const matchesForMonth = matchesData[selectedMonth] || [];
+   
 
     const handleMonthClick = (month) => {
         setSelectedMonth(month);
@@ -125,7 +130,18 @@ const Schedule = () => {
         setSelectedMatch(null);
     };
 
-    const matchesForMonth = matchesData[selectedMonth] || [];
+    useEffect(() => {
+        const token = localStorage.getItem('usertoken')
+        if(token){
+            setIsUserLoggedin(true)
+        } else {
+            setIsUserLoggedin(false)
+        }
+    })
+    
+    const handleLoginClick =()=> {
+        navigate('/login')
+    }
 
     return (
         <main>
@@ -178,12 +194,21 @@ const Schedule = () => {
                             </div>
                         </div>
                         <div className="button-container">
+                           {!isUserLoggedIn ?  ( 
+                                <button 
+                                className = "buy-ticket-login-button"
+                                onClick={()=>handleLoginClick()}>
+                                    Login to Buy
+                                </button>
+                           ) : (
                             <button
-                                onClick={() => openModal(match)} 
-                                className="buy-tickets-button"
+                            onClick={() => openModal(match)} 
+                            className="buy-tickets-button"
                             >
-                                Buy Tickets
-                            </button>
+                            Buy Tickets
+                        </button>
+                           )
+                            }
                         </div>
                     </div>
                 ))

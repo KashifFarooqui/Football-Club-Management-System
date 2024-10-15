@@ -1,11 +1,12 @@
 import React, {createContext, useState, useEffect} from 'react';
-import { addItem, getItem, updateItem, deleteItem } from '../Pages/Cart/cartService';
+import { addItem, getItem, updateItem, deleteItem, clearItem } from '../Pages/Cart/cartService';
 
 const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
-    const [forceUpdate, setForceUpdate] = useState(false); 
+    const [forceUpdate, setForceUpdate] = useState(false);
+    
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -29,15 +30,15 @@ export const CartProvider = ({children}) => {
     };
 
 
-    const updateToCart = async (id, quantity) => {
+    const updateToCart = async (id, quantity, size) => {
         
     
         try {
-            const updateNewItem = await updateItem(id, quantity);
+            const updateNewItem = await updateItem(id, quantity, size);
         
             setCart((prevCart) => {
                 const updatedCart =   prevCart.map((item) =>
-                    item._id === updateNewItem._id ? { ...item, quantity: updateNewItem.quantity } : item
+                    item._id === updateNewItem._id ? { ...item, quantity: updateNewItem.quantity, size: updateNewItem.size } : item
                 );
                 return [...updatedCart]
             });
@@ -56,8 +57,18 @@ export const CartProvider = ({children}) => {
         }
     };
 
+    const clearCart = async ()=>{
+        try {
+           
+            await clearItem()
+            setCart([])
+        } catch (error) {
+            console.error('failed to clear items')
+        }
+    }
+
     return (
-        <CartContext.Provider value={{cart, addToCart, updateToCart, removeFromCart}}>
+        <CartContext.Provider value={{cart, addToCart, updateToCart, removeFromCart, clearCart}}>
             {children}
         </CartContext.Provider>
     );

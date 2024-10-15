@@ -2,6 +2,7 @@
 import userRoute from './routes/user.routes.js'
 import coachRoute from './routes/coach.routes.js'
 import cartRoute from "./routes/cart.routes.js"
+import ticketRoute from "./routes/ticket.routes.js"
 import paymentRoute from "./routes/payment.routes.js"
 import cookieParser from 'cookie-parser'
 import express from 'express'
@@ -24,7 +25,6 @@ app.use('/api/users', userRoute)
 app.use('/api/coach', coachRoute)
 app.use('/api/shop/cart', cartRoute)
 app.use('/api/shop/cart', paymentRoute);
-
-
+app.use('/api/schedule', ticketRoute)
 
 export default app

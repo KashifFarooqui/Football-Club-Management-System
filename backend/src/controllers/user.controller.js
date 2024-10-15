@@ -104,13 +104,11 @@ const login = async (req, res) => {
 
 const updateProfile = async (req, res) => {
     try {
-        const { username, email, address } = req.body;  // Extract the necessary fields from the request body
-
-        // Update the user profile by email
+        const { username, email, address } = req.body;  
         const updatedUser = await User.findOneAndUpdate(
-            { email },  // Find user by email
-            { username, address },  // Fields to update
-            { new: true }  // Return the updated document
+            { email },
+            { username, address },  
+            { new: true }  
         );
 
         if (!updatedUser) {
@@ -120,11 +118,11 @@ const updateProfile = async (req, res) => {
             });
         }
 
-        // Send the updated user data in the response
+        
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully",
-            user: updatedUser  // Return the updated user data
+            user: updatedUser  
         });
     } catch (error) {
         console.error("Error updating profile:", error);

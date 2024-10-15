@@ -1,8 +1,9 @@
+
 import {Cart} from "../models/cart.models.js";
 
 const AddItem = async(req, res) => {
     try {
-        const { productId, name, price, quantity, image, category} = req.body;
+        const { productId, name, price, quantity, image, category, size} = req.body;
         console.log('Received Request', req.body);
 
         if (!productId || !name || !price || !quantity || !category) {
@@ -56,11 +57,12 @@ const GetItem = async (req, res) => {
 }
 
 const UpdateItem = async (req, res)=> {
-    const { quantity } = req.body;
+    const { quantity, size } = req.body;
     try {
         const cartItem = await Cart.findById(req.params.id)
         if (cartItem) {
-            cartItem.quantity = quantity
+            cartItem.quantity = quantity,
+            cartItem.size = size
             await cartItem.save();
             res.status(200).json({
                 message:'item Updated',
@@ -101,10 +103,34 @@ const RemoveItem = async (req, res) => {
     }
 };
 
+const clearItem = async (req, res) => {
+    try {
+        const result = await Cart.deleteMany({})
+
+        if(result.deletedCount > 0){
+            res.status(200).json({
+                message:'items Cleared',
+                sucess:true
+            })
+        } else {
+            res.status(404).json({
+            message: 'Item Not Found to Delete',
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message:'error clearing item',
+            success:false,
+            error,
+        })
+    }
+}
+
 
 export {
     AddItem,
     GetItem,
     UpdateItem,
-    RemoveItem
+    RemoveItem,
+    clearItem
 };

@@ -27,7 +27,9 @@ import Profile from "./Dashboard/UserDashComponent/Profile";
 import CartPage from "./Pages/Cart/CartPage";
 import Sucess from "./Checkout/sucess";
 import Cancel from "./Checkout/cancel";
-import CheckoutButton from "./Checkout/CheckoutButton";
+import { CheckoutButton, Checkoutbutton , BuyNowButton} from "./Checkout/CheckoutButton";
+import { OrderHistoryProvider } from "./context/OrderHistoryContext";
+import OrderHistory from "./Dashboard/UserDashComponent/OrderHistory";
 
 
 // const ProtectedRoute = ({ children, isLoggedIn}) => {
@@ -39,11 +41,12 @@ function App() {
   const [isCoachLoggedIn, setIsCoachLoggedIn] = useState(false);
 
 
+
   useEffect(() => {
     const userToken = localStorage.getItem("usertoken");
     const coachToken = localStorage.getItem("coachtoken");
-    console.log("User Token:", userToken);  
-    console.log("Coach Token:", coachToken); 
+    console.log("User Token:", userToken);
+    console.log("Coach Token:", coachToken);
 
     if (userToken) {
       setIsUserLoggedIn(true);
@@ -51,64 +54,65 @@ function App() {
 
     if (coachToken) {
       setIsCoachLoggedIn(true);
-      }
-    }, []);
-  
+    }
+  }, []);
+
   const handleUserLogout = () => {
     setIsUserLoggedIn(false);
-    localStorage.removeItem('usertoken'); 
+    localStorage.removeItem('usertoken');
   };
   const handleCoachLogout = () => {
     setIsCoachLoggedIn(false);
-    localStorage.removeItem('coachtoken'); 
+    localStorage.removeItem('coachtoken');
   };
   return (
     <Router>
       <div className="App">
-      <CartProvider>
-      <Header 
-          isUserLoggedIn={isUserLoggedIn}
-          isCoachLoggedIn={isCoachLoggedIn} 
-          onUserLogout={handleUserLogout}
-          onCoachLogout={handleCoachLogout} 
-        />
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Main />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/ticket" element={<Ticket />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/interview" element={<Interview />} />
-          <Route path="/watch" element={<Watch />} />
-          <Route path="/mens" element={<Mens />} />
-          <Route path="/values" element={<Values />} />
-          <Route path="/women" element={<Women />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/sponsors" element={<Sponsors />} />
-          <Route path="/honors" element={<Honors />} />
-          <Route path="/login" element={isUserLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
-          <Route path="/coachlogin" element={isCoachLoggedIn ? <Navigate to="/coachdashboard" /> : <CoachLogin />} />
-          <Route path="/coachregister" element={<CoachRegister />} />
-          <Route path="/register" element= { <Register />} />
-          <Route path="/cart" element={<CartPage/>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
-          <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" /> } />
-          <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to ="/coachlogin" /> } />
-          <Route path="/sucess" element={<Sucess />} />
-          <Route path="/cancel" element={<Cancel />} />
-          <Route path="/create-checkout-session" element={<CheckoutButton />} />
-          //protectedRoutes
-          {/* <Route path="/profile" element = {
-            <ProtectedRoute isLoggedIn={isUserLoggedIn}>
-            <Profile />
-            </ProtectedRoute>
-          } /> */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-        <Footer />
-        </CartProvider>
+        <OrderHistoryProvider>
+          <CartProvider>
+            <Header
+              isUserLoggedIn={isUserLoggedIn}
+              isCoachLoggedIn={isCoachLoggedIn}
+              onUserLogout={handleUserLogout}
+              onCoachLogout={handleCoachLogout}
+            />
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Main />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/ticket" element={!isUserLoggedIn ? <Navigate to="/login" /> : <Ticket />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/interview" element={<Interview />} />
+              <Route path="/watch" element={<Watch />} />
+              <Route path="/mens" element={<Mens />} />
+              <Route path="/values" element={<Values />} />
+              <Route path="/women" element={<Women />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/sponsors" element={<Sponsors />} />
+              <Route path="/honors" element={<Honors />} />
+              <Route path="/login" element={isUserLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
+              <Route path="/coachlogin" element={isCoachLoggedIn ? <Navigate to="/coachdashboard" /> : <CoachLogin />} />
+              <Route path="/coachregister" element={<CoachRegister />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
+              <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+              <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to="/coachlogin" />} />
+              <Route path="/sucess" element={<Sucess />} />
+              <Route path="/cancel" element={<Cancel />} />
+              <Route path="/create-checkout-session" element={<CheckoutButton />} />
+              <Route path="/create-checkout-session" element={<BuyNowButton />} />
+              <Route path="/ticket-checkout-session" element={<Checkoutbutton />} />
+              <Route path="/orderhistory" element={<OrderHistory />} />
+
+              //protectedRoutes
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+            <Footer />
+          </CartProvider>
+        </OrderHistoryProvider>
       </div>
     </Router>
   );

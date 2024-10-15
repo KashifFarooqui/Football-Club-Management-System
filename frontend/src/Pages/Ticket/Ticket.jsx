@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Checkoutbutton } from "../../Checkout/CheckoutButton.jsx";
 import './ticket.css'; 
 
 const Ticket = ({ matchDetails, onClose }) => {
@@ -10,18 +11,21 @@ const Ticket = ({ matchDetails, onClose }) => {
   const parsePrice = (priceString) => {
     return parseFloat(priceString.replace(/[^\d.-]/g, '')); 
   };
+    
 
-  
   const calculateTotal = () => {
     const price = ticketType === 'vip' 
       ? parsePrice(matchDetails.vipPrice) 
       : parsePrice(matchDetails.generalPrice);
     return price * ticketCount; 
   };
+  const ticketTotal = calculateTotal().toFixed(2)
 
   const handleConfirm = () => {
-    alert(`Tickets confirmed!\nDetails:\n- Type: ${ticketType}\n- Quantity: ${ticketCount}\n- Match: ${matchDetails.homeTeam} vs ${matchDetails.awayTeam}\n- Total: ₹${calculateTotal().toFixed(2)}`);
-    onClose(); 
+    alert(`Tickets confirmed!\nDetails:\n- Type: ${ticketType}\n- Quantity: ${ticketCount}\n- Match: ${matchDetails.homeTeam} vs ${matchDetails.awayTeam}\n- Total: ${calculateTotal().toFixed(2)}`);
+    // const currentUrl = window.location.href;
+    // console.log(currentUrl); 
+
   };
 
   if (!matchDetails) return null;
@@ -40,8 +44,8 @@ const Ticket = ({ matchDetails, onClose }) => {
 
         <p><strong>Date & Time:</strong> {matchDetails.dateTime}</p>
         <p><strong>Location:</strong> {matchDetails.location}</p>
-        <p><strong>VIP Price:</strong> ₹{parsePrice(matchDetails.vipPrice).toFixed(2)}</p>
-        <p><strong>Regular Price:</strong> ₹{parsePrice(matchDetails.generalPrice).toFixed(2)}</p>
+        <p><strong>VIP Price:</strong> €{parsePrice(matchDetails.vipPrice).toFixed(2)}</p>
+        <p><strong>Regular Price:</strong> €{parsePrice(matchDetails.generalPrice).toFixed(2)}</p>
 
         <div className="form-group">
           <label htmlFor="ticketCount">Number of Tickets:</label>
@@ -79,11 +83,12 @@ const Ticket = ({ matchDetails, onClose }) => {
 
 
         <div className="total-price">
-          <strong>Total: </strong>₹{calculateTotal().toFixed(2)} 
+          <strong>Total: </strong>€{ticketTotal} 
         </div>
 
         <div className="form-actions">
-          <button className="Confirm" onClick={handleConfirm}>Confirm Ticket</button>
+        <Checkoutbutton  totalAmount={ticketTotal}/>
+        {/* <button className="Confirm" onClick={handleConfirm}>Confirm</button> */}
           <button className="Confirm" onClick={onClose}>Close</button>
         </div>
       </div>

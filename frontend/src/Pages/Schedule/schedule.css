@@ -118,11 +118,26 @@
     text-align: center; /* Center text within the button */
 }
 
-
+.buy-ticket-login-button {
+    background-color: burlywood;
+    border: none;
+    color: black;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%; /* Make the button fill the width of the container */
+    text-align: center; /* Center text within the button */
+}
 
 .buy-tickets-button:hover
 {
-    background-color: burlywood; 
+    background-color: rgb(175, 157, 133); 
+}
+.buy-tickets-login-button:hover
+{
+    background-color: rgb(175, 157, 133); 
 }
 
 .no-tickets{

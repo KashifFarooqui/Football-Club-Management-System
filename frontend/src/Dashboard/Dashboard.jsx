@@ -13,7 +13,7 @@ export default function Dashboard () {
   const username = localStorage.getItem('username')
 
   const handleHistoryClick = () => {
-    navigate('/history')
+    navigate('/orderhistory')
   }
   const handleValuesClick = () => {
     navigate('/values')
@@ -36,16 +36,18 @@ export default function Dashboard () {
   const handleCartClick = () => {
     navigate('/cart')
   }
+  
+  
  
 
   const menuItems = [
     { icon: User, label: "View Profile", action:handleProfileClick },
     { icon: Ticket, label: "My Tickets"},
     { icon: ShoppingBasket, label: "Cart", action:handleCartClick},
+    { icon: History, label: "Order History", action:handleHistoryClick },
     { icon: ShoppingCart, label: "Shop", action:handleShopClick },
     { icon: CalendarRange, label: "Upcoming Matches", action:handleScheduleClick },
     { icon: TrophyIcon, label: "Trophies", action:handleHonorClick },
-    { icon: History, label: "History", action:handleHistoryClick },
     { icon: Info, label: "Info", action:handleInfoClick},
     { icon: Heart, label: "Values", action:handleValuesClick }
   ];

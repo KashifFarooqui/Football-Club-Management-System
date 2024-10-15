@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { SiZebpay } from "react-icons/si";
 
 const CartSchema = new mongoose.Schema({
   productId: { 
@@ -15,11 +16,15 @@ const CartSchema = new mongoose.Schema({
     type: Number, 
     required: true, 
     min: 1 },
-    image: { 
+  image: { 
       type: String, 
       required: false }, 
   category: { 
     type: String,
-    required: true }
+    required: true },
+  size: {
+    type:String,
+    default:'M'
+  }
 });
 export const Cart = mongoose.model('Cart', CartSchema);

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import CartContext from "../../context/cartContext";
+import { BuyNowButton } from "../../Checkout/CheckoutButton";
 import './shop.css';
 
 const Shop = () => {
@@ -10,7 +11,6 @@ const Shop = () => {
     const { addToCart } = useContext(CartContext);
     const [isUserLoggedIn, setIsUserLoggedin] = useState(false);
     
-
     const [cartQuantities, setCartQuantities] = useState({
         jerseys: Array(6).fill(1),
         shoes: Array(3).fill(1),
@@ -96,6 +96,7 @@ const Shop = () => {
                 <img src={item.image} alt={item.name} />
                 <h2>{item.name}</h2>
                 <p>{item.price}</p>
+            
                 <div className="quantity-controls">
                     <button onClick={() => updateQuantity(type, index, -1)}>-</button>
                     <span>{cartQuantities[type][index]}</span>
@@ -103,14 +104,17 @@ const Shop = () => {
                 </div>
                 
                 <div className="buttons">
-                    <button className="buy-now">Buy Now</button>
+                    <BuyNowButton />
                     <button className="add-to-cart-button" disabled={loading} onClick={() => handleAddToCart(item, type, index)}>
                         {loading ? 'Adding...' : 'Add to Cart'}
                     </button>
+                    
                 </div>
             </div>
         ));
     };
+
+    
 
     return (
         <div className="shop-container">

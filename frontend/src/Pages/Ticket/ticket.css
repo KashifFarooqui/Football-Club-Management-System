@@ -106,5 +106,11 @@
     margin-top: 20px;
 }
 .Confirm {
-    color:white
+    color:white;
+    transition:0.3s
+}
+.Confirm:hover{
+    color:red;
+    transform: translateY(-2px);
+    padding:15px 25px;
 }

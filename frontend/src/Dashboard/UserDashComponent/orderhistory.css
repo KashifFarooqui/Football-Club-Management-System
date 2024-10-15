@@ -1,0 +1,29 @@
+.order-history {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .order-history ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-history li {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    margin-bottom: 10px;
+  }
+  
+  .order-history li h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .order-history p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
