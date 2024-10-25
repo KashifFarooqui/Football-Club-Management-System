@@ -4,7 +4,7 @@ import connectDB from "./db/db.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 8000  // default port is 8000 if env dint give port
+const PORT = process.env.PORT || 8000  
 
 const startServer = async () => {
     try {

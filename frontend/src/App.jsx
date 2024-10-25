@@ -23,18 +23,19 @@ import CoachRegister from "./Auth/CoacLogin/CoachRegister";
 import Dashboard from "./Dashboard/Dashboard";
 import CoachDashboard from "./Dashboard/CoachDashboard";
 import ManagePlayers from "./Dashboard/CoachDashComponent/ManagePlayers";
+import Strategy from "./Dashboard/CoachDashComponent/Stategy";
+import Salary from "./Dashboard/CoachDashComponent/Salary";
+import Traning from "./Dashboard/CoachDashComponent/Traning";
 import Profile from "./Dashboard/UserDashComponent/Profile";
 import CartPage from "./Pages/Cart/CartPage";
 import Sucess from "./Checkout/sucess";
 import Cancel from "./Checkout/cancel";
 import { CheckoutButton, Checkoutbutton , BuyNowButton} from "./Checkout/CheckoutButton";
-import { OrderHistoryProvider } from "./context/OrderHistoryContext";
-import OrderHistory from "./Dashboard/UserDashComponent/OrderHistory";
 
 
-// const ProtectedRoute = ({ children, isLoggedIn}) => {
-//   return isLoggedIn ? children : <Navigate to ='/login'/>
-// }
+
+
+
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -68,7 +69,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <OrderHistoryProvider>
+
           <CartProvider>
             <Header
               isUserLoggedIn={isUserLoggedIn}
@@ -99,20 +100,23 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/coachdashboard" element={isCoachLoggedIn ? <CoachDashboard /> : <Navigate to="/coachlogin" />} />
               <Route path="/profile" element={isUserLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+              <Route path="/strategy" element={<Strategy />} />
+              <Route path="/salary" element={<Salary />} />
+              <Route path="/traning" element={<Traning />} />
               <Route path="/manageplayers" element={isCoachLoggedIn ? <ManagePlayers /> : <Navigate to="/coachlogin" />} />
               <Route path="/sucess" element={<Sucess />} />
               <Route path="/cancel" element={<Cancel />} />
               <Route path="/create-checkout-session" element={<CheckoutButton />} />
               <Route path="/create-checkout-session" element={<BuyNowButton />} />
               <Route path="/ticket-checkout-session" element={<Checkoutbutton />} />
-              <Route path="/orderhistory" element={<OrderHistory />} />
+             
 
               //protectedRoutes
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
             <Footer />
           </CartProvider>
-        </OrderHistoryProvider>
+       
       </div>
     </Router>
   );

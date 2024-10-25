@@ -21,7 +21,7 @@ const CoachRegister = () => {
   };
 
   const handleCancel = () => {
-    navigate('/'); // Redirect to the home page
+    navigate('/'); 
   };
 
   const handleRegister = async (e) => {

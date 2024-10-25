@@ -1,15 +1,18 @@
 import React, { useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import { Users, Target, Clipboard, Calendar, CreditCard, LogOut } from 'lucide-react';
+import { Users, Target, Clipboard, Calendar, CreditCard } from 'lucide-react';
 import './coachdashboard.css'; 
 import ManagePlayers from './CoachDashComponent/ManagePlayers';
+import Strategy from './CoachDashComponent/Stategy';
+import Salary from './CoachDashComponent/Salary';
+import Traning from './CoachDashComponent/Traning';
 
 const Sidebar = ({ activeItem, setActiveItem }) => {
   const navigate = useNavigate()
 
   const handleItemClick = (itemName, action) => {
     if (activeItem !== itemName) {
-      setActiveItem(itemName); // Update active item only if it's not already active
+      setActiveItem(itemName); 
       if (action) {
         action();
       }
@@ -22,15 +25,22 @@ const Sidebar = ({ activeItem, setActiveItem }) => {
   const handleScheduleClick =()=>{
     navigate("/schedule")
   }
-
-  
+  const handleStrategyClick=()=>{
+    navigate("/strategy")
+  }
+  const handleSalaryClick=()=>{
+    navigate("/salary")
+  }
+  const handleTraningClick=()=>{
+    navigate("/traning")
+  }
   
   const sidebarItems = [
     { name: 'Manage Players', icon: Users,action:handleManageClick },
-    { name: 'Team Strategy', icon: Target },
-    { name: 'Training Plans', icon: Clipboard },
+    { name: 'Team Strategy', icon: Target,action:handleStrategyClick },
+    { name: 'Training Plans', icon: Clipboard , action:handleTraningClick},
     { name: 'Schedule', icon: Calendar ,action:handleScheduleClick},
-    { name: 'Salary', icon: CreditCard },
+    { name: 'Salary', icon: CreditCard,action:handleSalaryClick },
     //{ name: 'Logout', icon: LogOut, action :handleLogout }, 
   ];
 
@@ -61,15 +71,15 @@ function MainContent({ activeItem }) {
         case 'Manage Players':
           return <ManagePlayers />
       case 'Team Strategy':
-        return <div><h1>Team Strategy</h1><p>Strategy content goes here.</p></div>;
+        return <Strategy />
       case 'Training Plans':
-        return <div><h1>Training Plans</h1><p>Training plans content goes here.</p></div>;
+        return <Traning />
       case 'Schedule':
         return <Schedule />
       case 'Salary':
         return <div><h1>Salary</h1><p>Salary content goes here.</p></div>;
       default:
-        return <div><h1>Welcome to the Dashboard</h1><p>Select an option from the sidebar.</p></div>;
+        return <Salary />
     }
   };
 

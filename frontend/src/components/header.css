@@ -1,11 +1,11 @@
-/* General body styling */
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Header Container */
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -15,12 +15,12 @@ body {
   border-bottom: 2px solid #ddd;
 }
 
-/* Logo Styling */
+
 .logo img {
   height: 75px;
 }
 
-/* Navbar Styling */
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -47,7 +47,7 @@ nav a:hover {
   color: #243b55;
 }
 
-/* Actions Styling */
+
 .actions {
   display: flex;
   align-items: center;
@@ -65,33 +65,32 @@ hr {
 .actions a {
   margin-left: 10px; 
   text-decoration: none;
-  color: white; /* Change text color to white for better contrast */
+  color: white; 
   font-weight: bold;
-  padding: 12px 20px; /* Increased padding for better button appearance */
+  padding: 12px 20px; 
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  height: 100%; /* Make buttons full height of the actions container */
-  display: flex; /* Center align text vertically */
-  align-items: center; /* Center align text vertically */
-  justify-content: center; /* Center align text horizontally */
+  height: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
-/* Button Background Colors */
+
 .actions a.login {
-  background-color: red; /* Blue for Login */
+  background-color: red; 
 }
 
 .actions a.register {
-  background-color: #28a745; /* Green for Register */
+  background-color: #28a745; 
 }
-
 .actions a.login:hover {
   background-color: #0056b3;
-  color:black /* Darker blue on hover */
+  color:black 
 }
 
 .actions a.register:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #218838; 
 }
 
 @media (max-width: 768px) {
@@ -125,12 +124,12 @@ hr {
 }
 .coach-text {
   display: flex;
-  justify-content: space-between; /* This moves the items to the extreme left and right */
+  justify-content: space-between; 
   padding: 20px 30px;
   background-color: #faf3e0;
   border-bottom: 2px solid #ddd;
   font-size: large;
-  align-items: center; /* Vertically center-aligns the items */
+  align-items: center; 
   gap:800px;
 }
 
@@ -150,7 +149,7 @@ hr {
 
 .go-back-button {
   display: flex;
-  align-items: center; /* Aligns the icon and text vertically */
+  align-items: center;
   cursor: pointer;
   color: black;
   font-size: 16px;
@@ -158,10 +157,10 @@ hr {
 }
 
 .go-back-button:hover {
-  color: #333; /* Add a hover effect to change the color */
+  color: #333;
 }
 
 .go-back-button span {
-  margin-left: 1px; /* Adds spacing between the icon and the text */
+  margin-left: 1px;
 }
 

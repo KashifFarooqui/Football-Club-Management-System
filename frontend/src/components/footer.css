@@ -1,10 +1,9 @@
 
 
 .footer {
-    background-color: #faf3e0; /* Light background for the footer */
+    background-color: #faf3e0;
     padding: 40px 0;
-    color: #faf3e0; /* Text color */
-  
+    color: #faf3e0; 
   }
   
   .cont {
@@ -13,15 +12,14 @@
   }
   
   .row {
-    display: flex; /* Flexbox to align items horizontally */
-    justify-content: space-between; /* Even space between columns */
-    flex-wrap: wrap; /* In case of small screens, allow wrapping */
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
-  
   .col-md-3 {
     flex: 1;
     padding: 0 15px;
-    min-width: 200px; /* Ensures columns don't get too narrow on small screens */
+    min-width: 200px;
   }
   
   .col-md-3 h3 {
@@ -45,10 +43,10 @@
   }
   
   .col-md-3 ul li a:hover {
-    color: #007bff; /* Hover color for links */
+    color: #007bff;
   }
   
-  /* Add some responsive styling for smaller screens */
+ 
   @media (max-width: 768px) {
     .row {
       flex-direction: column;

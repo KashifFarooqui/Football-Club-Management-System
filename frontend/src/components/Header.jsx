@@ -7,24 +7,24 @@ import './Header.css';
 
 const Header = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const[isCoachLoggedIn, setIsCoachLoggedIn] = useState(false) // Track login status
+  const[isCoachLoggedIn, setIsCoachLoggedIn] = useState(false) 
   const navigate = useNavigate();
 
 
 
   useEffect(() => {
     const token = localStorage.getItem('usertoken');
-    setIsUserLoggedIn(!!token);  // Update state based on token presence
+    setIsUserLoggedIn(!!token);  
   
     const ctoken = localStorage.getItem('coachtoken');
-    setIsCoachLoggedIn(!!ctoken);  // Update state based on coach token presence
+    setIsCoachLoggedIn(!!ctoken); 
   }, []);
 
  
 
   const handleUserLogout = () => {
     setIsUserLoggedIn(false);
-    localStorage.removeItem('usertoken'); // clear any auth token
+    localStorage.removeItem('usertoken'); 
     navigate('/'); 
     window.location.reload()
     

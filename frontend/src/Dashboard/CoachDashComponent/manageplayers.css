@@ -1,13 +1,13 @@
 .table-container {
-  max-width: 100%; /* Limits the table's max-width */
+  max-width: 100%; 
   padding: 10px;
-  overflow-x: auto; /* Enables horizontal scrolling */
+  overflow-x: auto;
 }
 
 .scrollable-table {
   width: auto;
   border-collapse: collapse;
-  table-layout: fixed; /* Prevents table from expanding unnecessarily */
+  table-layout: fixed; 
 }
 
 .scrollable-table th, .scrollable-table td {
@@ -18,25 +18,25 @@
 
 .scrollable-table th {
   background-color: #f4f4f4;
-  position: sticky; /* Keeps the headers visible during scrolling */
-  top: 0; /* Ensures the headers stick to the top */
-  z-index: 1; /* Ensures headers are on top of the rows */
+  position: sticky; 
+  top: 0; 
+  z-index: 1; 
 }
 
 .table-body {
-  display:block; /* Turns tbody into a block to allow scrolling */
-  max-height: 600px; /* Adjust this value based on your desired height */
+  display:block;
+  max-height: 600px; 
   width: 1100px;
   overflow-y: auto;
-  border:  1px solid #ddd ; /* Enables vertical scrolling */
+  border:  1px solid #ddd ;
 }
 
 .scrollable-table td, .scrollable-table th {
-  width: 200px; /* Adjust the width of the cells as needed */
+  width: 200px; 
 }
 
 .scrollable-table td {
-  word-wrap: break-word; /* Ensures long text fits inside the cell */
+  word-wrap: break-word;
 }
 .scrollable-table tr:hover{
   background-color: #ddd;

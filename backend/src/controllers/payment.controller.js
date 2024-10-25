@@ -13,9 +13,9 @@ const createCheckoutSession = async (req, res) => {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: 'Real Madrid Shop',  // This can be dynamic depending on your logic
+              name: 'Real Madrid Shop', 
             },
-            unit_amount: amount * 100, // Convert to cents for EUR
+            unit_amount: amount * 100, 
           },
           quantity: 1,
         },

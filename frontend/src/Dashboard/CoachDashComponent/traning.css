@@ -1,0 +1,31 @@
+.trainingplan-container {
+    padding: 20px;
+    margin-left: 250px; 
+  }
+  
+  .trainingplan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color:black;
+  }
+  
+  .trainingplan-table th, .trainingplan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .trainingplan-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .trainingplan-table td {
+    background-color: #ffffff;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  

@@ -1,0 +1,27 @@
+/* salary.css */
+.salary-container {
+    padding: 20px;
+  }
+  
+  .salary-table {
+    width: 100%;
+    border-collapse: collapse;
+    color:black;
+  }
+  
+  .salary-table th,
+  .salary-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .salary-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .salary-status {
+    color: green;
+    font-weight: bold;
+  }
+  

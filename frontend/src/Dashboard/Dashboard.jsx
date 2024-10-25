@@ -12,8 +12,8 @@ export default function Dashboard () {
   const toggleSidebar = () => setIsOpen(!isOpen);
   const username = localStorage.getItem('username')
 
-  const handleHistoryClick = () => {
-    navigate('/orderhistory')
+  const HistoryClick = () => {
+    navigate('/history')
   }
   const handleValuesClick = () => {
     navigate('/values')
@@ -36,15 +36,18 @@ export default function Dashboard () {
   const handleCartClick = () => {
     navigate('/cart')
   }
+  const handletTicketClick = () => {
+    navigate('/schedule')
+  }
   
   
  
 
   const menuItems = [
     { icon: User, label: "View Profile", action:handleProfileClick },
-    { icon: Ticket, label: "My Tickets"},
+    { icon: Ticket, label: "My Tickets", action:handletTicketClick},
     { icon: ShoppingBasket, label: "Cart", action:handleCartClick},
-    { icon: History, label: "Order History", action:handleHistoryClick },
+    { icon: History, label: "History", action:HistoryClick },
     { icon: ShoppingCart, label: "Shop", action:handleShopClick },
     { icon: CalendarRange, label: "Upcoming Matches", action:handleScheduleClick },
     { icon: TrophyIcon, label: "Trophies", action:handleHonorClick },
@@ -82,7 +85,7 @@ export default function Dashboard () {
               className="menu-item"
               onClick={() => {
                 if (item.action) {
-                  item.action(); // Execute the action (e.g., for logout)
+                  item.action(); 
                 }
               }}
             >

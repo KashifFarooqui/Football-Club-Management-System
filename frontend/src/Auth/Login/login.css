@@ -48,7 +48,7 @@
   .form-group input:focus, 
 .form-group input[value] {
     color: black ;
-    background-color:white; /* Background color when text is selected */
+    background-color:white; 
 }
  
   .form-actions {

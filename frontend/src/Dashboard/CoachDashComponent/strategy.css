@@ -1,0 +1,14 @@
+/* strategy.css */
+.strategy-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .strategy-image {
+    width: 600px;
+    height: 800px;
+    margin-left: 500px;
+
+  }
+  

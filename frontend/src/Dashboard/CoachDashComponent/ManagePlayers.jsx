@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./manageplayers.css"; // Import the CSS for styling
+import "./manageplayers.css"; 
 
 const ManagePlayers = () => {
-  // Updated player data with stats as strings
+ 
   const [players, setPlayers] = useState([
     // Goalkeepers
     {
@@ -199,17 +199,17 @@ const ManagePlayers = () => {
     },
   ]);
   
-  // Function to generate a random health value between 0 and 100
+ 
   const generateRandomHealth = () => {
-    return Math.floor(Math.random() * 101); // Returns a number between 0 and 100
+    return Math.floor(Math.random() * 101); 
   };
 
-  // Function to determine the color based on health value
+ 
   const getHealthColor = (health) => {
     if (health <= 30) {
-      return "#FF0000"; // Red (Low health)
+      return "#FF0000"; 
     } else if (health <= 50) {
-      return "#FF7F00"; // Orange (Low-Medium health)
+      return "#FF7F00"; 
     } else if (health <= 70) {
       return "#FFFF00"; // Yellow (Medium health)
     } else if (health <= 85) {

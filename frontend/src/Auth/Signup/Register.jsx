@@ -21,12 +21,11 @@ const Register = () => {
   };
 
   const handleCancel = () => {
-    navigate('/'); // Redirect to the home page
+    navigate('/'); 
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent default action
-
+    e.preventDefault(); 
 
 
     const userDetails = {
@@ -64,7 +63,6 @@ const Register = () => {
               type="text"
               id="username"
               name="username"
-              required
               placeholder="Enter Your Username"
               onChange={handleChange}
             />
